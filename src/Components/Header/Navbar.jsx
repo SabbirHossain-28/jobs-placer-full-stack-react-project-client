@@ -1,59 +1,122 @@
-import { useState } from 'react';
 import { GrWorkshop } from "react-icons/gr";
+import { NavLink } from "react-router-dom";
 
-const Navbar=()=> {
-  const [isOpen, setIsOpen] = useState(false);
 
+const Navbar = () => {
   return (
-    <nav className="relative bg-white shadow dark:bg-gray-800">
-      <div className="container px-6 py-4 mx-auto">
-        <div className="lg:flex lg:items-center lg:justify-between">
-          <div className="flex items-center justify-between">
-            <div className='flex items-center'>
-                <p className='text-4xl text-[#11B719]'><GrWorkshop></GrWorkshop></p>
-                <h4 className='text-4xl font-lora'>Jobs<span className='text-[#11B719]'>Placer</span></h4>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="flex lg:hidden">
-              <button onClick={() => setIsOpen(!isOpen)} type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-                {!isOpen ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                )}
-              </button>
-            </div>
+    <div className="navbar bg-base-100 shadow-md">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
           </div>
-
-          {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-          <div className={`${isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full'} absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
-            <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Join Slack</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Browse Topics</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Random Item</a>
-              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Experts</a>
-            </div>
-
-            <div className="flex items-center mt-4 lg:mt-0">
-              
-              <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                  <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" className="object-cover w-full h-full" alt="avatar" />
-                </div>
-
-                <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
-              </button>
-            </div>
-          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <NavLink
+                to="/"
+                style={({ isActive,isTransitioning }) => {
+                  return {
+                    fontWeight: isActive ? "bolder" : "bold",
+                    fontSize:isActive?"16px":"",
+                    color:isActive?"#11B719":"#1F2937",
+                    background:isActive?"none":"",
+                    textDecoration:isActive?"underline":"",
+                    viewTransitionName: isTransitioning ? "slide" : "",
+                  };
+                }}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+          <NavLink
+              to="/login"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Login
+            </NavLink>
+          </li>
+          </ul>
         </div>
+        <a className="btn btn-ghost text-xl">
+          <div className="flex items-center">
+            <p className="text-4xl text-[#11B719]">
+              <GrWorkshop></GrWorkshop>
+            </p>
+            <h4 className="text-4xl font-lora">
+              Jobs<span className="text-[#11B719]">Placer</span>
+            </h4>
+          </div>
+        </a>
       </div>
-    </nav>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <NavLink
+              to="/"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+          <NavLink
+              to="/login"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Login
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-end">
+        <a className="btn">Button</a>
+      </div>
+    </div>
   );
-}
+};
 
 export default Navbar;
