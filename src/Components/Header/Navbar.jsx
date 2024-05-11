@@ -1,10 +1,28 @@
+// import { useEffect } from "react";
 import { GrWorkshop } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 
-
 const Navbar = () => {
+  // useEffect(()=>{
+  //   const navbar=document.querySelector(".navbar");
+  //   const sticky=navbar.offsetTop;
+
+  //   const stickyNavbar=()=>{
+  //     if(window.scrollY>=sticky){
+  //       navbar.classList.add("sticky");
+  //     }
+  //     else{
+  //       navbar.classList.remove("sticky");
+  //     }
+  //   }
+  //   window.addEventListener("scroll",stickyNavbar);
+
+  //   return ()=>{
+  //     window.removeEventListener("scroll",stickyNavbar);
+  //   }
+  // },[])
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="navbar bg-base-100 shadow-md sticky">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
