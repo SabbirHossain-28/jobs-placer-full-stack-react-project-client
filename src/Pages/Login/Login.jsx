@@ -1,11 +1,93 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginBgGif from "../../assets/gif/login-form.gif";
 import { GrWorkshop } from "react-icons/gr";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Auth/AuthHook/useAuth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const toastId = useRef(null);
+  const navigate = useNavigate();
+
+  const { loginUser, loginWithGoogle } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    // reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const { email, password } = data;
+
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+
+    if (!emailRegex.test(email) && !toast.isActive(toastId.current)) {
+      return (toastId.current = toast.error(
+        "Please enter a valid email address."
+      ));
+    }
+    if (
+      (password.length < 6 || !passwordRegex.test(password)) &&
+      !toast.isActive(toastId.current)
+    ) {
+      return (toastId.current = toast.error(
+        "Password must be at least 6 characters long and contain at least one uppercase and one lowercase letter"
+      ));
+    }
+
+    loginUser(email, password).then((userCredential) => {
+      if (userCredential) {
+        Swal.fire({
+          title: "Welcome to JobsPlacer",
+          text: "You are successfully login",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/");
+          }
+        })
+      }
+    })
+    .catch((error) => {
+      if (error && toast.isActive(toastId.current)) {
+        toast.current = toast.error("This Google account is already used");
+      }
+    });
+  };
+
+  const handleGoogleLogin=()=>{
+    loginWithGoogle()
+    .then(userCredential=>{
+      if (userCredential) {
+        Swal.fire({
+          title: "Welcome to JobsPlacer",
+          text: "You are successfully login",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/");
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      if (error && toast.isActive(toastId.current)) {
+        toast.current = toast.error("This Google account is already used");
+      }
+    });
+  }
 
   const handlePasswordShowToggler = () => {
     setShowPassword(!showPassword);
@@ -42,12 +124,12 @@ const Login = () => {
                 <GrWorkshop className="text-5xl text-[#11B719]"></GrWorkshop>
               </div>
               <p className="mt-3 text-gray-500 dark:text-gray-300 font-lora">
-                Sign in to access your account
+                Log in to access your account
               </p>
             </div>
 
             <div className="mt-8">
-              <form className="font-inter">
+              <form onSubmit={handleSubmit(onSubmit)} className="font-inter">
                 <div>
                   <label
                     htmlFor="email"
@@ -61,7 +143,11 @@ const Login = () => {
                     id="email"
                     placeholder="example@example.com"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("email", { required: true })}
                   />
+                  {errors.email && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
 
                 <div className="mt-6 relative">
@@ -74,12 +160,23 @@ const Login = () => {
                     </label>
                   </div>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
                     placeholder="Your Password"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "This field is required",
+                      },
+                    })}
                   />
+                  {errors.password && (
+                    <span className="text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
                   <span
                     onClick={handlePasswordShowToggler}
                     className="absolute right-2 top-10"
@@ -93,7 +190,11 @@ const Login = () => {
                 </div>
 
                 <div className="mt-6">
-                  <input className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:bg-green-400 focus:ring focus:ring-green-300 focus:ring-opacity-50" type="submit" value="Log in" />
+                  <input
+                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:bg-green-400 focus:ring focus:ring-green-300 focus:ring-opacity-50"
+                    type="submit"
+                    value="Log in"
+                  />
                 </div>
               </form>
               <div className="mt-3">
@@ -104,7 +205,7 @@ const Login = () => {
                     OR
                   </span>
                 </span>
-                <button className="bg-white flex items-center text-gray-700 dark:text-gray-300 justify-center gap-x-3 text-sm sm:text-base  dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5 w-full font-inter">
+                <button onClick={handleGoogleLogin} className="bg-white flex items-center text-gray-700 dark:text-gray-300 justify-center gap-x-3 text-sm sm:text-base  dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5 w-full font-inter">
                   <svg
                     className="w-5 h-5 sm:h-6 sm:w-6"
                     viewBox="0 0 24 24"
@@ -136,7 +237,7 @@ const Login = () => {
                     </defs>
                   </svg>
 
-                  <span>Sign in with Google</span>
+                  <span>Log in with Google</span>
                 </button>
               </div>
               <p className="mt-6 text-sm text-center text-gray-400 font-lora">
@@ -153,6 +254,12 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        style={{ width: "500px" }}
+        position="top-right"
+        theme="colored"
+        autoClose={4000}
+      />
     </div>
   );
 };
