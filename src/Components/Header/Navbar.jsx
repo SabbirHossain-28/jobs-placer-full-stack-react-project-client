@@ -1,26 +1,29 @@
 // import { useEffect } from "react";
 import { GrWorkshop } from "react-icons/gr";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Auth/AuthHook/useAuth";
+import { Tooltip } from "react-tooltip";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  // useEffect(()=>{
-  //   const navbar=document.querySelector(".navbar");
-  //   const sticky=navbar.offsetTop;
+  const {user,logOutUser}=useAuth();
+  const navigate=useNavigate()
 
-  //   const stickyNavbar=()=>{
-  //     if(window.scrollY>=sticky){
-  //       navbar.classList.add("sticky");
-  //     }
-  //     else{
-  //       navbar.classList.remove("sticky");
-  //     }
-  //   }
-  //   window.addEventListener("scroll",stickyNavbar);
-
-  //   return ()=>{
-  //     window.removeEventListener("scroll",stickyNavbar);
-  //   }
-  // },[])
+  const handleUserLogOut = () => {
+    logOutUser().then(() => {
+      Swal.fire({
+        title: "You are successfully logout",
+        text: "You won't be able to revert this!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/");
+        }
+      });
+    });
+  }
   return (
     <div className="navbar bg-base-100 shadow-md sticky">
       <div className="navbar-start">
@@ -166,7 +169,39 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {
+          user?<div className={`avatar ${user ? "online" : "offline"} online`}>
+          <div id="btn-tooltip" className="w-14 rounded-full">
+            {user ? (
+              <img src={user?.photoURL} />
+            ) : (
+              <IoPersonCircleOutline className="text-6xl"></IoPersonCircleOutline>
+            )}
+          </div>
+          <Tooltip
+            anchorSelect="#btn-tooltip"
+            clickable
+            style={{
+              width: "130px",
+              height: "60px",
+              backgroundColor: "#000000a4",
+              borderRadius: "15px",
+            }}
+          >
+            <button
+              onClick={handleUserLogOut}
+              className="btn btn-xs bg-red-600 border-none mb-1"
+            >
+              Logout
+            </button>
+            <p className="text-xs ">{user?.displayName ? user.displayName : "No User"}</p>
+          </Tooltip>
+        </div>:<div className="flex gap-2 font-raleway">
+              <button className="btn btn-sm md:btn-md lg:btn">
+                <Link to="/login">Login</Link>
+              </button>
+            </div>
+        }
       </div>
     </div>
   );
