@@ -93,20 +93,20 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div className="max-w-7xl mx-auto my-12  rounded-tl-[60px] rounded-tr-[60px] rounded-bl-[60px] rounded-br-[60px] bg-white dark:bg-gray-900 border border-[#11B719]">
+    <div className="max-w-7xl mx-auto my-12  rounded-tl-[60px] rounded-tr-[60px] rounded-bl-[60px] rounded-br-[60px] bg-slate-200 dark:bg-gray-900 border border-[#11B719]">
       <div className="flex justify-center min-h-screen">
         <div
-          className="hidden bg-cover lg:block lg:w-2/3 rounded-br-[60px] rounded-tr-[60px] border-[#11B719] border-r-4"
+          className="hidden bg-cover lg:block lg:w-2/3 rounded-tl-[60px] rounded-bl-[60px] rounded-br-[60px] rounded-tr-[60px] border-[#11B719] border-r-4"
           style={{
             backgroundImage: `url(${loginBgGif})`,
           }}
         >
-          <div className="flex h-full px-10 bg-gray-800 bg-opacity-40 rounded-tl-[60px] rounded-br-[60px] rounded-tr-[60px] rounded-bl-[60px] ">
+          <div className="flex h-full items-center px-10 bg-gray-800 bg-opacity-40 rounded-tl-[60px] rounded-br-[60px] rounded-tr-[60px] rounded-bl-[60px] ">
             <div className="mt-8">
               <h4 className="text-5xl text-teal-800 font-lora font-bold">
                 Jobs<span className="text-[#11B719]">Placer</span>
               </h4>
-              <p className="max-w-sm mt-3 text-gray-200 font-inter">
+              <p className="max-w-2xl mt-3 text-gray-200 font-inter">
                 Welcome to Job Placer – your gateway to career opportunities!
                 Log in to access exclusive job listings, personalized
                 recommendations, and tools to streamline your job search. Join
@@ -243,10 +243,10 @@ const Login = () => {
               <p className="mt-6 text-sm text-center text-gray-400 font-lora">
                 Do not have an account yet?{" "}
                 <Link
-                  to="/signup"
+                  to="/register"
                   className="text-[#11B719] focus:outline-none focus:underline hover:underline"
                 >
-                  Sign up
+                  Register
                 </Link>
                 .
               </p>

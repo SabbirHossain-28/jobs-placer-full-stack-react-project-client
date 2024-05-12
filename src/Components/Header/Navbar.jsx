@@ -43,7 +43,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1000] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <NavLink
@@ -52,7 +52,7 @@ const Navbar = () => {
                   return {
                     fontWeight: isActive ? "bolder" : "bold",
                     fontSize:isActive?"16px":"",
-                    color:isActive?"#11B719":"#1F2937",
+                    color:isActive?"#11B719":"#3d5270",
                     background:isActive?"none":"",
                     textDecoration:isActive?"underline":"",
                     viewTransitionName: isTransitioning ? "slide" : "",
@@ -62,6 +62,7 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
+            {/* <p className="text-[]"></p> */}
             <li>
           <NavLink
               to="/login"
@@ -69,7 +70,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"#3d5270",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -77,6 +78,23 @@ const Navbar = () => {
               }}
             >
               Login
+            </NavLink>
+          </li>
+          <li>
+          <NavLink
+              to="/register"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#3d5270",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Register
             </NavLink>
           </li>
           </ul>
@@ -126,6 +144,23 @@ const Navbar = () => {
               }}
             >
               Login
+            </NavLink>
+          </li>
+          <li>
+          <NavLink
+              to="/register"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#3d5270",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Register
             </NavLink>
           </li>
         </ul>
