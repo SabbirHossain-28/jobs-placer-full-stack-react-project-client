@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toastId = useRef(null);
-  const {createUser,logOutUser,updateUserProfile}=useAuth();
+  const {createUser,updateUserProfile,setUser,user}=useAuth();
   const navigate=useNavigate()
 
   const {
@@ -52,8 +52,10 @@ const Register = () => {
           confirmButtonText: "Ok",
         }).then((result) => {
           if (result.isConfirmed) {
-            logOutUser();
-            navigate("/login");
+            // logOutUser();
+            // navigate("/login");
+            setUser({...user,photoURL:url,displayName:name})
+            navigate("/")
           }
         });
       }

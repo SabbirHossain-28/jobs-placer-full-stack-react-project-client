@@ -173,7 +173,7 @@ const Navbar = () => {
           user?<div className={`avatar ${user ? "online" : "offline"} online`}>
           <div id="btn-tooltip" className="w-14 rounded-full">
             {user ? (
-              <img src={user?.photoURL} />
+              <img referrerPolicy="no-referrer" src={user?.photoURL} />
             ) : (
               <IoPersonCircleOutline className="text-6xl"></IoPersonCircleOutline>
             )}
