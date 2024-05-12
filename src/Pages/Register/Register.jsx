@@ -1,9 +1,73 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerGif from "../../assets/gif/register-form.gif";
 import { GrWorkshop } from "react-icons/gr";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { useRef, useState } from "react";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Auth/AuthHook/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const toastId = useRef(null);
+  const {createUser,logOutUser,updateUserProfile}=useAuth();
+  const navigate=useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const {name,url,email,password,}=data;
+    console.log(name,url,email,password);
+
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+
+    if (!emailRegex.test(email) && !toast.isActive(toastId.current)) {
+      return (toastId.current = toast.error(
+        "Please enter a valid email address."
+      ));
+    }
+    if (
+      (password.length < 6 || !passwordRegex.test(password)) &&
+      !toast.isActive(toastId.current)
+    ) {
+      return (toastId.current = toast.error(
+        "Password must be at least 6 characters long and contain at least one uppercase and one lowercase letter"
+      ));
+    }
+    createUser(email, password).then((userCredential) => {
+      updateUserProfile(name, url).then(() => {
+      });
+      if (userCredential) {
+        Swal.fire({
+          title: "Registration Successful",
+          text: "Now please login to your account",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            logOutUser();
+            navigate("/login");
+          }
+        });
+      }
+    })
+    .catch(error=>{
+        if(error && !toast.isActive(toastId.current)){
+            toastId.current=toast.error("User is already registered");
+        }
+    })
+  };
+
+  const handlePasswordShowToggler = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className="my-12">
       <div className="max-w-7xl mx-auto flex flex-col  lg:flex-row-reverse gap-2 border  shadow-xl   bg-slate-200 dark:bg-gray-900">
@@ -17,7 +81,10 @@ const Register = () => {
         <div className=" lg:w-1/2 p-4">
           <section className="bg-slate-200 dark:bg-gray-900">
             <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-              <form className="w-full max-w-md">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="w-full max-w-md"
+              >
                 <div className="flex justify-center mx-auto">
                   <GrWorkshop className="text-5xl text-[#11B719]"></GrWorkshop>
                   <h4 className="text-5xl text-teal-800 font-lora font-bold">
@@ -25,13 +92,13 @@ const Register = () => {
                   </h4>
                 </div>
                 <div className="flex items-center justify-center mt-4">
-                  <p className="font-medium text-center text-gray-400">
+                  <p className="font-medium text-center text-gray-800 dark:text-gray-400">
                     Unlock your potential and take the next step in your career
                     journey with Jobs Placer seamless registration process.{" "}
                   </p>
                 </div>
                 <div className="flex items-center justify-center mt-6">
-                  <a className=" pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
+                  <a className=" pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-[#11B719] dark:text-gray-400">
                     Register your acoount here
                   </a>
                 </div>
@@ -56,10 +123,15 @@ const Register = () => {
 
                   <input
                     type="text"
+                    name="name"
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Username"
+                    {...register("name", { required: true })}
                   />
                 </div>
+                  {errors.name && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 <div className="relative flex items-center mt-8">
                   <span className="absolute">
                     <svg
@@ -80,10 +152,15 @@ const Register = () => {
 
                   <input
                     type="url"
+                    name="url"
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Your photo URL"
+                    {...register("url", { required: true })}
                   />
                 </div>
+                  {errors.url && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 <div className="relative flex items-center mt-6">
                   <span className="absolute">
                     <svg
@@ -104,10 +181,15 @@ const Register = () => {
 
                   <input
                     type="email"
+                    name="email"
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Email address"
+                    {...register("email", { required: true })}
                   />
                 </div>
+                  {errors.email && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
 
                 <div className="relative flex items-center mt-4">
                   <span className="absolute">
@@ -128,11 +210,26 @@ const Register = () => {
                   </span>
 
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Password"
+                    {...register("password", { required: true })}
                   />
+                  <span
+                    onClick={handlePasswordShowToggler}
+                    className="absolute right-2 top-4"
+                    >
+                    {showPassword ? (
+                      <IoMdEyeOff className="text-gray-400 text-xl"></IoMdEyeOff>
+                    ) : (
+                      <IoMdEye className="text-gray-400 text-xl "></IoMdEye>
+                    )}
+                  </span>
                 </div>
+                    {errors.password && (
+                      <span className="text-red-500">This field is required</span>
+                    )}
 
                 <div className="mt-6">
                   <input
@@ -158,10 +255,11 @@ const Register = () => {
         </div>
       </div>
       <ToastContainer
-        position="top-center"
+        style={{ width: "500px" }}
+        position="top-right"
         theme="colored"
         autoClose={4000}
-      ></ToastContainer>
+      />
     </div>
   );
 };

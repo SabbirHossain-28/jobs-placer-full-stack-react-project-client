@@ -59,8 +59,8 @@ const Login = () => {
       }
     })
     .catch((error) => {
-      if (error && toast.isActive(toastId.current)) {
-        toast.current = toast.error("This Google account is already used");
+      if (error && !toast.isActive(toastId.current)) {
+        toast.current = toast.error("Invalid Credentials");
       }
     });
   };
