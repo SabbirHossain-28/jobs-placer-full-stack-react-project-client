@@ -65,7 +65,40 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            {/* <p className="text-[]"></p> */}
+            <li>
+            <NavLink
+              to="/addJob"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Add Job
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/myAddedJobs"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              My Added Jobs
+            </NavLink>
+          </li>
             <li>
           <NavLink
               to="/login"

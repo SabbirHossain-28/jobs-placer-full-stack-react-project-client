@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import JobDetails from "../Pages/JobDetails/JobDetails";
 import PrivetRoute from "./PrivetRoute";
 import AddJob from "../Pages/AddJob/AddJob";
+import MyAddedJobs from "../Pages/MyAddedJobs/MyAddedJobs";
 
 const router = createBrowserRouter([
   {
@@ -31,14 +32,25 @@ const router = createBrowserRouter([
             <JobDetails></JobDetails>
           </PrivetRoute>
         ),
-        loader:({params})=>fetch(`${import.meta.env.VITE_LOCAL_URL}/jobDetails/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_LOCAL_URL}/jobDetails/${params.id}`),
       },
       {
-        path:"/addJob",
-        element:<PrivetRoute>
+        path: "/addJob",
+        element: (
+          <PrivetRoute>
             <AddJob></AddJob>
-        </PrivetRoute>
-      }
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "myAddedJobs",
+        element: (
+          <PrivetRoute>
+            <MyAddedJobs></MyAddedJobs>
+          </PrivetRoute>
+        ),
+      },
     ],
   },
 ]);
