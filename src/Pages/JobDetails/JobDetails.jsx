@@ -1,10 +1,64 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useRef, useState } from "react";
+import {  useLoaderData } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Auth/AuthHook/useAuth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const JobDetails = () => {
   const data = useLoaderData();
-  const { job_title, name } = data;
-  console.log(data);
+  const {user}=useAuth();
+  const toastId=useRef();
+  const {email}=user;
+  const {
+    _id,
+    jobTitle,
+    jobDescription,
+    jobBannerURL,
+    salaryRange,
+    jobApplicantsNumber,
+    loggedInUserEmail,
+    jobPostingDate,
+    applicationDeadline,
+    jobCategory
+  } = data;
+
+  const jobId=_id;
+  const userEmail=email;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  
+  const onSubmit = (data) => {
+      // console.log(data);
+      const {url}=data;
+      
+      const applicationData={jobId,userEmail,loggedInUserEmail,url,jobPostingDate,applicationDeadline,jobCategory,jobTitle,salaryRange,jobApplicantsNumber};
+      console.table(applicationData)
+      if(userEmail===loggedInUserEmail && !toast.isActive(toastId.current)){
+        return toast.current = toast.error("You are not eligible to apply");
+      }
+
+   fetch(`${import.meta.env.VITE_LOCAL_URL}/applications`,{
+    method:"POST",
+    headers:{
+        "content-type":"application/json",
+    },
+    body:JSON.stringify(applicationData)
+   })
+   .then(res=>res.json())
+   .then(data=>{
+    console.log(data);
+   })
+   .catch(error=>{
+    console.error(error);
+   })
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -19,12 +73,18 @@ const JobDetails = () => {
       <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center dark:bg-gray-900">
         <div className="p-8 md:p-12 lg:px-16 lg:py-24">
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left ">
-            <h2 className="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">
-              {job_title}
+            <h2 className="text-2xl font-bold text-gray-900 md:text-4xl dark:text-white font-lora">
+              {jobTitle}
             </h2>
 
-            <p className="hidden text-gray-500 md:mt-4 md:block dark:text-gray-400">
-              {name}
+            <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
+              {jobDescription}
+            </p>
+            <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
+              Salary-Range:{salaryRange}
+            </p>
+            <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
+              Total Applicants:{jobApplicantsNumber}
             </p>
 
             <div className="mt-4 md:mt-8">
@@ -32,12 +92,12 @@ const JobDetails = () => {
                 onClick={openModal}
                 className="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
-                Get Started Today
+                Apply For Job
               </button>
               {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
                   <div className="modal-box bg-white rounded p-8">
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div>
                         <h2 className="text-xl font-medium font-rale">
                           Submit Your Application here
@@ -64,9 +124,11 @@ const JobDetails = () => {
                         <input
                           type="text"
                           name="name"
+                          value={user?.displayName}
+                          readOnly
                           className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           placeholder="Username"
-                          //   {...register("name", { required: true })}
+                          {...register("name")}
                         />
                       </div>
                       <div className="relative flex items-center mt-6">
@@ -90,9 +152,11 @@ const JobDetails = () => {
                         <input
                           type="email"
                           name="email"
+                          value={user?.email}
+                          readOnly
                           className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           placeholder="Email address"
-                          // {...register("email", { required: true })}
+                          {...register("email")}
                         />
                       </div>
                       <div className="relative flex items-center mt-8">
@@ -118,18 +182,24 @@ const JobDetails = () => {
                           name="url"
                           className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           placeholder="Your Resume URL"
-                          // {...register("url", { required: true })}
+                          {...register("url", { required: true })}
                         />
                       </div>
+                        {errors.url && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
                       <div className="mt-6">
                         <input
-                          onClick={closeModal}
+                        //  
                           className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:bg-green-400 focus:ring focus:ring-green-300 focus:ring-opacity-50"
                           type="submit"
                           value="Submit Application"
                         />
                       </div>
                     </form>
+                    <button className="btn w-full mt-2 font-medium"  onClick={closeModal}>Close</button>
                   </div>
                 </div>
               )}
@@ -139,10 +209,16 @@ const JobDetails = () => {
 
         <img
           alt=""
-          src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          src={jobBannerURL}
           className="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
         />
       </section>
+      <ToastContainer
+        style={{ width: "500px" }}
+        position="top-right"
+        theme="colored"
+        autoClose={4000}
+      />
     </div>
   );
 };
