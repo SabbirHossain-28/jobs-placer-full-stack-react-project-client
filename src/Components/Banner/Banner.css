@@ -1,11 +1,12 @@
-/* #Banner { height: 100% }
+/* #Banner { height: 100% } */
 html,
-body {
+/* body {
   position: relative;
   height: 100%;
-}
+  z-index: -99;
+} */
 
-body {
+/* body {
   background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -18,6 +19,8 @@ body {
   width: 100%;
   height: 100%;
   background: #000;
+  /* z-index: -99; */
+
 }
 
 .swiper-slide {
@@ -50,14 +53,13 @@ body {
 
 .swiper-slide .text {
   font-size: 14px;
-  /* max-width: 400px; */
   line-height: 1.3;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
   position: absolute;
-  top: 80%;
+  top: 80%; 
   transform: translateY(80%);
   width: 60px;
   height: 60px;

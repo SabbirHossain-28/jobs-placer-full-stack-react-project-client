@@ -76,7 +76,7 @@ export default function Banner() {
         ></div>
         {
             swiperSlideContent.map((contentData,idx)=>(<SwiperSlide key={idx}>
-                <div className="flex flex-col items-center lg:flex-row">
+                <div className="flex flex-col items-center lg:flex-row z-[99]">
                   <div className="lg:w-1/2">
                     <div className="title font-lora font-bold" data-swiper-parallax="-300">
                       {contentData.title}
