@@ -69,7 +69,7 @@ export default function Banner() {
           slot="container-start"
           className="parallax-bg"
           style={{
-            "background-image": `url(${bannerImage})`,
+            "backgroundImage": `url(${bannerImage})`,
             backgroundPosition: "center",
           }}
           data-swiper-parallax="-23%"
