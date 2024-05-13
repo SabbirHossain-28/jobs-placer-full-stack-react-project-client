@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import {  useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,9 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const JobDetails = () => {
   const data = useLoaderData();
-  const {user}=useAuth();
-  const toastId=useRef();
-  const {email}=user;
+  const { user } = useAuth();
+  const toastId = useRef();
+  const { email } = user;
   const {
     _id,
     jobTitle,
@@ -20,11 +20,11 @@ const JobDetails = () => {
     loggedInUserEmail,
     jobPostingDate,
     applicationDeadline,
-    jobCategory
+    jobCategory,
   } = data;
 
-  const jobId=_id;
-  const userEmail=email;
+  const jobId = _id;
+  const userEmail = email;
 
   const {
     register,
@@ -32,31 +32,41 @@ const JobDetails = () => {
     formState: { errors },
   } = useForm();
 
-  
   const onSubmit = (data) => {
-      // console.log(data);
-      const {url}=data;
-      
-      const applicationData={jobId,userEmail,loggedInUserEmail,url,jobPostingDate,applicationDeadline,jobCategory,jobTitle,salaryRange,jobApplicantsNumber};
-      console.table(applicationData)
-      if(userEmail===loggedInUserEmail && !toast.isActive(toastId.current)){
-        return toast.current = toast.error("You are not eligible to apply");
-      }
+    // console.log(data);
+    const { url } = data;
 
-   fetch(`${import.meta.env.VITE_LOCAL_URL}/applications`,{
-    method:"POST",
-    headers:{
-        "content-type":"application/json",
-    },
-    body:JSON.stringify(applicationData)
-   })
-   .then(res=>res.json())
-   .then(data=>{
-    console.log(data);
-   })
-   .catch(error=>{
-    console.error(error);
-   })
+    const applicationData = {
+      jobId,
+      userEmail,
+      loggedInUserEmail,
+      url,
+      jobPostingDate,
+      applicationDeadline,
+      jobCategory,
+      jobTitle,
+      salaryRange,
+      jobApplicantsNumber,
+    };
+    console.table(applicationData);
+    if (userEmail === loggedInUserEmail && !toast.isActive(toastId.current)) {
+      return (toast.current = toast.error("You are not eligible to apply"));
+    }
+
+    fetch(`${import.meta.env.VITE_LOCAL_URL}/applications`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(applicationData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -185,21 +195,26 @@ const JobDetails = () => {
                           {...register("url", { required: true })}
                         />
                       </div>
-                        {errors.url && (
-                          <span className="text-red-500">
-                            This field is required
-                          </span>
-                        )}
+                      {errors.url && (
+                        <span className="text-red-500">
+                          This field is required
+                        </span>
+                      )}
                       <div className="mt-6">
                         <input
-                        //  
+                          //
                           className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:bg-green-400 focus:ring focus:ring-green-300 focus:ring-opacity-50"
                           type="submit"
                           value="Submit Application"
                         />
                       </div>
                     </form>
-                    <button className="btn w-full mt-2 font-medium"  onClick={closeModal}>Close</button>
+                    <button
+                      className="btn w-full mt-2 font-medium"
+                      onClick={closeModal}
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
               )}

@@ -133,6 +133,23 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink
+              to="/addJob"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Add Job
+            </NavLink>
+          </li>
+          <li>
           <NavLink
               to="/login"
               style={({ isActive,isTransitioning }) => {
