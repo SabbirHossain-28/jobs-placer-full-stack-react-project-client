@@ -96,6 +96,9 @@ const JobDetails = () => {
             <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
               Total Applicants:{jobApplicantsNumber}
             </p>
+            <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
+              Application Deadline:{new Date(applicationDeadline).toLocaleDateString()}
+            </p>
 
             <div className="mt-4 md:mt-8">
               <button

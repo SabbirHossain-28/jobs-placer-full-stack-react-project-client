@@ -6,10 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -18,7 +20,42 @@ const AddJob = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.table(data);
+    // console.table(data);
+    const {url,title,category,salary,description,posting_date}=data;
+    const addJobData={
+        jobBannerURL:url,
+        jobTitle:title,
+        loggedInUserName:user?.displayName,
+        loggedInUserEmail:user?.email,
+        jobCategory:category,
+        salaryRange:salary,
+        jobDescription:description,
+        jobPostingDate:posting_date,
+        applicationDeadline:startDate,
+        jobApplicantsNumber:0
+    }
+    fetch(`${import.meta.env.VITE_LOCAL_URL}/jobs`,{
+        method:"POST",
+        headers:{
+            "content-type":"application/json"
+        },
+        body:JSON.stringify(addJobData)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.insertedId){
+            Swal.fire({
+                title: "Welcome to JobsPlacer",
+                text: "You are successfully login",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Ok",
+              })
+        }
+    })
+    .catch(error=>{
+        console.error(error);
+    })
   };
   return (
     <div className="my-12">
@@ -91,10 +128,11 @@ const AddJob = () => {
                     <input
                       type="text"
                       name="name"
-                      className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
-                      placeholder="Your Name"
                       value={user?.displayName}
                       readOnly
+                      className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
+                      placeholder="Your Name"
+                      
                     />
                   </div>
                   <div className="mt-6 lg:w-1/2">
@@ -104,10 +142,11 @@ const AddJob = () => {
                     <input
                       type="email"
                       name="email"
-                      className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
-                      placeholder="Your Email"
                       value={user?.email}
                       readOnly
+                      className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
+                      placeholder="Your Email"
+                      
                     />
                   </div>
                 </div>
@@ -184,10 +223,11 @@ const AddJob = () => {
                     <input
                       type="number"
                       name="applicants"
+                      value={0}
+                      readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Total Job Applicants"
-                      value="0"
-                      readOnly
+                      
                       // {...register("applicants", { required: true })}
                     />
                   </div>
