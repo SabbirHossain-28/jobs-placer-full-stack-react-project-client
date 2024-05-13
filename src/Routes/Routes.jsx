@@ -30,6 +30,7 @@ const router = createBrowserRouter([
             <JobDetails></JobDetails>
           </PrivetRoute>
         ),
+        loader:({params})=>fetch(`${import.meta.env.VITE_LOCAL_URL}/jobDetails/${params.id}`),
       },
     ],
   },

@@ -4,14 +4,15 @@ import useAuth from "../../Auth/AuthHook/useAuth";
 import Swal from "sweetalert2";
 
 const CategoryCard = ({ data }) => {
+    console.log(data);
   const {
     _id,
-    job_title,
-    name,
-    deadline,
-    posting_date,
-    salary_range,
-    applicants_number,
+    jobTitle,
+    loggedInUserName,
+    applicationDeadline,
+    jobPostingDate,
+    salaryRange,
+    jobApplicantsNumber,
   } = data || {};
 
   const navigate=useNavigate();
@@ -40,17 +41,17 @@ const CategoryCard = ({ data }) => {
       <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            Posting Date:{posting_date}
+            Posting Date:{jobPostingDate}
           </span>
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            Deadline:{deadline}
+            Deadline:{applicationDeadline}
           </span>
           <a
             className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
             tabIndex="0"
             role="button"
           >
-            Applicant:{applicants_number}
+            Applicant:{jobApplicantsNumber}
           </a>
         </div>
 
@@ -60,7 +61,7 @@ const CategoryCard = ({ data }) => {
             tabIndex="0"
             role="link"
           >
-            {job_title}
+            {jobTitle}
           </a>
           {/* <p className="mt-2 text-gray-600 dark:text-gray-300">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
@@ -69,7 +70,7 @@ const CategoryCard = ({ data }) => {
             modi ratione libero!
           </p> */}
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Salary-range:{salary_range}
+            Salary-range:{salaryRange}
           </p>
         </div>
 
@@ -80,7 +81,7 @@ const CategoryCard = ({ data }) => {
               tabIndex="0"
               role="link"
             >
-              {name}
+              {loggedInUserName}
             </a>
           </div>
           <button

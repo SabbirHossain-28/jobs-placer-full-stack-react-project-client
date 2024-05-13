@@ -18,6 +18,7 @@ const CategoryJob = () => {
     };
     getData();
   }, []);
+  console.log(jobsData);
   if(loading){
     return <div className="  flex items-center justify-center"><Lottie style={{ width: "300px" }} animationData={loadingLottie}></Lottie></div>
   }
@@ -49,7 +50,7 @@ const CategoryJob = () => {
         <TabPanel>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {jobsData
-              .filter((data) => data.category === "on_site_jobs")
+              .filter((data) => data.jobCategory === "On Site")
               .map((data, idx) => (
                 <CategoryCard key={idx} data={data}></CategoryCard>
               ))}
@@ -58,7 +59,7 @@ const CategoryJob = () => {
         <TabPanel>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {jobsData
-              .filter((data) => data.category === "remote_jobs")
+              .filter((data) => data.jobCategory === "Remote")
               .map((data, idx) => (
                 <CategoryCard key={idx} data={data}></CategoryCard>
               ))}
@@ -67,7 +68,7 @@ const CategoryJob = () => {
         <TabPanel>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {jobsData
-              .filter((data) => data.category === "hybrid_jobs")
+              .filter((data) => data.jobCategory === "Hybrid")
               .map((data, idx) => (
                 <CategoryCard key={idx} data={data}></CategoryCard>
               ))}
@@ -76,7 +77,7 @@ const CategoryJob = () => {
         <TabPanel>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {jobsData
-              .filter((data) => data.category === "part_time_jobs")
+              .filter((data) => data.jobCategory === "Part-Time")
               .map((data, idx) => (
                 <CategoryCard key={idx} data={data}></CategoryCard>
               ))}
