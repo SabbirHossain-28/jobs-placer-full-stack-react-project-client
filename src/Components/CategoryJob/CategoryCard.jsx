@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import Swal from "sweetalert2";
 
 const CategoryCard = ({ data }) => {
+  const location=useLocation();
+  const navigate=useNavigate();
+  const {user}=useAuth()
+  const from=location.state || "/login";
+
     console.log(data);
   const {
     _id,
@@ -14,9 +19,6 @@ const CategoryCard = ({ data }) => {
     salaryRange,
     jobApplicantsNumber,
   } = data || {};
-
-  const navigate=useNavigate();
-  const {user}=useAuth()
 
   const handleViewDetails=()=>{
     if (!user) {
@@ -29,7 +31,7 @@ const CategoryCard = ({ data }) => {
           })
           .then((result) => {
             if (result.isConfirmed) {
-              navigate("/login");
+              navigate(from);
             }
           });
       } else {
