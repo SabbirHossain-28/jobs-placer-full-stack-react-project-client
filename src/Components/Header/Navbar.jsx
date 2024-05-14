@@ -99,6 +99,23 @@ const Navbar = () => {
               My Added Jobs
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/appliedJobs"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Applied Jobs
+            </NavLink>
+          </li>
             <li>
           <NavLink
               to="/login"
@@ -197,6 +214,23 @@ const Navbar = () => {
               }}
             >
               My Added Jobs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/appliedJobs"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"#1F2937",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Applied Jobs
             </NavLink>
           </li>
           <li>

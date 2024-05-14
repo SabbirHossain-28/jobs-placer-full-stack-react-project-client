@@ -53,6 +53,11 @@ const JobDetails = () => {
       return (toast.current = toast.error("You are not eligible to apply"));
     }
 
+    console.log(Date.now());
+    // if(Date.now()>{new Date(applicationDeadline).toLocaleDateString()}){
+
+    // }
+
     fetch(`${import.meta.env.VITE_LOCAL_URL}/applications`, {
       method: "POST",
       headers: {

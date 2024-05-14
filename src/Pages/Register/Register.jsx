@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerGif from "../../assets/gif/register-form.gif";
 import { GrWorkshop } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,7 +12,9 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toastId = useRef(null);
   const {createUser,updateUserProfile,setUser,user}=useAuth();
+  const location=useLocation();
   const navigate=useNavigate()
+  const from=location.state || "/";
 
   const {
     register,
@@ -45,8 +47,8 @@ const Register = () => {
       });
       if (userCredential) {
         Swal.fire({
-          title: "Registration Successful",
-          text: "Now please login to your account",
+          title: "Welcome to Jobs Placer",
+          text: "Now you are a member of our Jobs Placer Community",
           icon: "success",
           confirmButtonColor: "#3085d6",
           confirmButtonText: "Ok",
@@ -55,7 +57,7 @@ const Register = () => {
             // logOutUser();
             // navigate("/login");
             setUser({...user,photoURL:url,displayName:name})
-            navigate("/")
+            navigate(from,{replace:true});
           }
         });
       }
