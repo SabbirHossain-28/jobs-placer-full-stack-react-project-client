@@ -105,7 +105,7 @@ const MyAddedJobs = () => {
                   </td>
                   <td className="border">{listData.jobApplicantsNumber}</td>
                   <td className="border">
-                    <Link to={`/updateSpotData/${listData._id}`}>
+                    <Link to={`/updateJobData/${listData._id}`}>
                       <button className="btn btn-xs bg-green-500">
                         <LuClipboardEdit className="text-xl"></LuClipboardEdit>
                       </button>
