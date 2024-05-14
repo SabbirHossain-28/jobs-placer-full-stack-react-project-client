@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBgGif from "../../assets/gif/login-form.gif";
 import { GrWorkshop } from "react-icons/gr";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
@@ -16,7 +16,13 @@ const Login = () => {
   const location=useLocation();
   const from=location.state || "/";
 
-  const { loginUser, loginWithGoogle } = useAuth();
+  const { loginUser, loginWithGoogle,user,loading } = useAuth();
+
+  useEffect(()=>{
+    if(user){
+      navigate("/")
+    }
+  },[user,navigate])
 
   const {
     register,
@@ -95,6 +101,10 @@ const Login = () => {
   const handlePasswordShowToggler = () => {
     setShowPassword(!showPassword);
   };
+
+  if(user || loading){
+    return
+  }
   return (
     <div className="my-12">
       <div className="max-w-7xl mx-auto flex flex-col  lg:flex-row gap-2 border  shadow-xl   bg-slate-200 dark:bg-gray-900">
