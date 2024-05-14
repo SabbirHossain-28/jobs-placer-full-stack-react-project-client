@@ -1,14 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import Swal from "sweetalert2";
 
 const CategoryCard = ({ data }) => {
-  const location=useLocation();
-  const navigate=useNavigate();
-  const {user}=useAuth()
-  const from=location.state || "/login";
-  
+
   const {
     _id,
     jobTitle,
@@ -18,25 +14,6 @@ const CategoryCard = ({ data }) => {
     salaryRange,
     jobApplicantsNumber,
   } = data || {};
-
-  const handleViewDetails=()=>{
-    if (!user) {
-        Swal.fire({
-            title: "SORRY",
-            text: "You have to login first to view details of this job",
-            icon: "error",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Ok",
-          })
-          .then((result) => {
-            if (result.isConfirmed) {
-              navigate(from);
-            }
-          });
-      } else {
-        navigate(`/jobDetails/${_id}`);
-      }
-  }
   return (
     <div>
       <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -85,14 +62,15 @@ const CategoryCard = ({ data }) => {
               {loggedInUserName}
             </a>
           </div>
-          <button
-            onClick={handleViewDetails}
+          <Link
+            // onClick={handleViewDetails}
+            to={`/jobDetails/${_id}`}
             className="text-blue-600 dark:text-blue-400 hover:underline"
             tabIndex="0"
             role="link"
           >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

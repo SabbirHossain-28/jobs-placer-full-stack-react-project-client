@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import useAuth from "../Auth/AuthHook/useAuth";
 import Lottie from "lottie-react";
 import loadingLottie from "../../public/loading-lottie.json";
+import Swal from "sweetalert2";
 
 const PrivetRoute = ({children}) => {
     const {user,loading}=useAuth();
@@ -15,7 +16,16 @@ const PrivetRoute = ({children}) => {
     if(user){
         return children
     }
-    return <Navigate state={location.pathname} to="/login" replace={true}></Navigate>;
+    else{
+        Swal.fire({
+            title: "SORRY",
+            text: "You have to login first to view details of this job",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Ok",
+          })
+          return <Navigate state={location.pathname} to="/login" replace={true}></Navigate>;
+    }
 };
 
 PrivetRoute.propTypes={

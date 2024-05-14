@@ -8,7 +8,7 @@ import useAuth from "../../Auth/AuthHook/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,11 +19,11 @@ const Login = () => {
 
   const { loginUser, loginWithGoogle,user,loading } = useAuth();
 
-  // useEffect(()=>{
-  //   if(user){
-  //     navigate("/")
-  //   }
-  // },[user,navigate])
+  useEffect(()=>{
+    if(user){
+      navigate("/")
+    }
+  },[user,navigate])
 
   const {
     register,
@@ -106,9 +106,9 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  // if(user || loading){
-  //   return
-  // }
+  if(user || loading){
+    return
+  }
   return (
     <div className="my-12">
       <div className="max-w-7xl mx-auto flex flex-col  lg:flex-row gap-2 border  shadow-xl   bg-slate-200 dark:bg-gray-900">
