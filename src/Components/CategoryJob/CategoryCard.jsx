@@ -8,8 +8,7 @@ const CategoryCard = ({ data }) => {
   const navigate=useNavigate();
   const {user}=useAuth()
   const from=location.state || "/login";
-
-    console.log(data);
+  
   const {
     _id,
     jobTitle,

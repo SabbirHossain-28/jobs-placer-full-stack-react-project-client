@@ -16,7 +16,7 @@ const MyAddedJobs = () => {
 
   const getData = async () => {
     const { data } = await axios(
-      `${import.meta.env.VITE_LOCAL_URL}/job?email=${user.email}`
+      `${import.meta.env.VITE_LOCAL_URL}/job?email=${user.email}`,{withCredentials:true}
     );
     setMyAddedJobsData(data);
   };

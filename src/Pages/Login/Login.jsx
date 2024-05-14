@@ -8,6 +8,7 @@ import useAuth from "../../Auth/AuthHook/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -77,6 +78,9 @@ const Login = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((userCredential) => {
+        // console.log(userCredential.user);
+        // const {data}=axios.post(`${import.meta.env.VITE_LOCAL_URL}/jwt`,{email:userCredential?.user?.email},{withCredentials:true})
+        // console.log(data);
         if (userCredential) {
           Swal.fire({
             title: "Welcome to JobsPlacer",

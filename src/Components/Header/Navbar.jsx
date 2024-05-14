@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 import { GrWorkshop } from "react-icons/gr";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import { Tooltip } from "react-tooltip";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const {user,logOutUser}=useAuth();
-  const navigate=useNavigate()
-  const location=useLocation();
-  const from=location.state || "/"
+  // const navigate=useNavigate()
+  // const location=useLocation();
+  // const from=location.state || "/"
 
   const handleUserLogOut = () => {
     logOutUser().then(() => {

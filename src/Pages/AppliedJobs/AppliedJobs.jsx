@@ -11,7 +11,7 @@ const AppliedJobs = () => {
 
     useEffect(()=>{
         const getData=async()=>{
-            const {data}=await axios(`${import.meta.env.VITE_LOCAL_URL}/application?email=${user.email}`)
+            const {data}=await axios(`${import.meta.env.VITE_LOCAL_URL}/application?email=${user.email}`,{withCredentials:true})
             setAppliedJobsData(data);
         }
         getData()
