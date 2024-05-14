@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const JobDetails = () => {
   const data = useLoaderData();
   const { user } = useAuth();
   const toastId = useRef();
+  const navigate=useNavigate();
   const { email } = user;
   const {
     _id,
@@ -67,7 +69,16 @@ const JobDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if(data.insertedId){
+          Swal.fire({
+            title: "Application Submited",
+            text: "Your application is submited successfully",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Ok",
+          })
+          navigate("/appliedJobs")
+        }
       })
       .catch((error) => {
         console.error(error);
