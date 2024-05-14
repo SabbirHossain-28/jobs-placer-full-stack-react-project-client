@@ -32,10 +32,10 @@ const JobDetails = () => {
     register,
     handleSubmit,
     formState: { errors },
+    // reset,
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data);
     const { url } = data;
 
     const applicationData = {
@@ -50,15 +50,16 @@ const JobDetails = () => {
       salaryRange,
       jobApplicantsNumber,
     };
+
+    const currentDate=new Date();
+    if (currentDate > new Date(applicationDeadline)) {
+      toast.error("The application deadline has passed. You cannot apply for this job.");
+      return; 
+  }
     console.table(applicationData);
     if (userEmail === loggedInUserEmail && !toast.isActive(toastId.current)) {
       return (toast.current = toast.error("You are not eligible to apply"));
     }
-
-    console.log(Date.now());
-    // if(Date.now()>{new Date(applicationDeadline).toLocaleDateString()}){
-
-    // }
 
     fetch(`${import.meta.env.VITE_LOCAL_URL}/applications`, {
       method: "POST",
@@ -82,7 +83,7 @@ const JobDetails = () => {
       })
       .catch((error) => {
         console.error(error);
-      });
+    });
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
