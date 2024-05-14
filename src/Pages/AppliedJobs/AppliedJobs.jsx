@@ -5,6 +5,7 @@ import useAxiosSecure from "../../AxiosHook/useAxiosSecure";
 const AppliedJobs = () => {
   const { user } = useAuth();
   const [appliedJobsData, setAppliedJobsData] = useState([]);
+  const [filterCategory, setFilterCategory] = useState("");
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -13,7 +14,16 @@ const AppliedJobs = () => {
       setAppliedJobsData(data);
     };
     getData();
-  }, [user,axiosSecure]);
+  }, [user, axiosSecure, filterCategory]);
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axiosSecure(
+        `/categoryFilter?filter=${filterCategory}`
+      );
+      setAppliedJobsData(data);
+    };
+    getData();
+  }, [user, axiosSecure, filterCategory]);
   console.log(appliedJobsData);
 
   return (
@@ -30,6 +40,15 @@ const AppliedJobs = () => {
         </p>
       </div>
       <div className="border  p-4">
+        <div className="my-2">
+          <select onChange={e=>setFilterCategory(e.target.value)} value={filterCategory} className="w-full p-2" name="category" id="">
+            <option value="">Select Category For Filter</option>
+            <option value="On Site">On Site</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Part-Time">Part-Time</option>
+          </select>
+        </div>
         <div className="overflow-x-auto font-inter">
           <table className="table text-gray-800 dark:text-gray-400">
             {/* head */}
