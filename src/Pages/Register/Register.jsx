@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerGif from "../../assets/gif/register-form.gif";
 import { GrWorkshop } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
@@ -11,10 +11,16 @@ import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toastId = useRef(null);
-  const {createUser,updateUserProfile,setUser,user}=useAuth();
+  const {createUser,updateUserProfile,setUser,user,loading}=useAuth();
   const location=useLocation();
   const navigate=useNavigate()
   const from=location.state || "/";
+
+  useEffect(()=>{
+    if(user){
+      navigate("/")
+    }
+  },[user,navigate])
 
   const {
     register,
@@ -72,6 +78,11 @@ const Register = () => {
   const handlePasswordShowToggler = () => {
     setShowPassword(!showPassword);
   };
+
+  if(user || loading){
+    return
+  }
+  
   return (
     <div className="my-12">
       <div className="max-w-7xl mx-auto flex flex-col  lg:flex-row-reverse gap-2 border  shadow-xl   bg-slate-200 dark:bg-gray-900">
