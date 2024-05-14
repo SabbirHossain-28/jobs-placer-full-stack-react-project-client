@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Auth/AuthHook/useAuth";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { LuClipboardEdit } from "react-icons/lu";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../AxiosHook/useAxiosSecure";
 
 const MyAddedJobs = () => {
   const { user } = useAuth();
   const [myAddedJobsData, setMyAddedJobsData] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     getData();
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_LOCAL_URL}/job?email=${user.email}`,{withCredentials:true}
-    );
+    const { data } = await axiosSecure(`/job?email=${user.email}`);
     setMyAddedJobsData(data);
   };
 
@@ -43,7 +42,7 @@ const MyAddedJobs = () => {
                 text: "Your data has been deleted.",
                 icon: "success",
               });
-              getData()
+              getData();
             }
           });
       }

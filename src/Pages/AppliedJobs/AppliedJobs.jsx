@@ -1,31 +1,32 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Auth/AuthHook/useAuth";
-import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { LuClipboardEdit } from "react-icons/lu";
-// import { MdDeleteForever } from "react-icons/md";
+import useAxiosSecure from "../../AxiosHook/useAxiosSecure";
 
 const AppliedJobs = () => {
-    const {user}=useAuth();
-    const [appliedJobsData,setAppliedJobsData]=useState([]);
+  const { user } = useAuth();
+  const [appliedJobsData, setAppliedJobsData] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
-    useEffect(()=>{
-        const getData=async()=>{
-            const {data}=await axios(`${import.meta.env.VITE_LOCAL_URL}/application?email=${user.email}`,{withCredentials:true})
-            setAppliedJobsData(data);
-        }
-        getData()
-    },[user])
-    console.log(appliedJobsData);
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axiosSecure(`/application?email=${user.email}`);
+      setAppliedJobsData(data);
+    };
+    getData();
+  }, [user,axiosSecure]);
+  console.log(appliedJobsData);
 
-    return (
-        <div className="max-w-7xl mx-auto mb-12 mt-12 shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
+  return (
+    <div className="max-w-7xl mx-auto mb-12 mt-12 shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
       <div className="text-center mb-12 text-gray-800 dark:text-gray-400">
         <h2 className="text-4xl font-lora  font-semibold">
-        Track Your Career Journey | Jobs Placer
+          Track Your Career Journey | Jobs Placer
         </h2>
         <p className="font-inter mt-4">
-        Dive into the details of the jobs you have applied for on Jobs Placer, your gateway to diverse opportunities in on-site, remote, part-time, and hybrid categories. Keep tabs on your career progress and explore new horizons with ease.
+          Dive into the details of the jobs you have applied for on Jobs Placer,
+          your gateway to diverse opportunities in on-site, remote, part-time,
+          and hybrid categories. Keep tabs on your career progress and explore
+          new horizons with ease.
         </p>
       </div>
       <div className="border  p-4">
@@ -81,7 +82,7 @@ const AppliedJobs = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default AppliedJobs;
