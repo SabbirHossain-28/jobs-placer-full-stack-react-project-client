@@ -19,11 +19,12 @@ const Navbar = () => {
         text: "You won't be able to revert this!",
         icon: "success",
         confirmButtonColor: "#3085d6",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate(from);
-        }
-      });
+      })
+      // .then((result) => {
+      //   if (result.isConfirmed) {
+      //     navigate(from);
+      //   }
+      // });
     });
   }
   return (
@@ -65,6 +66,23 @@ const Navbar = () => {
                 }}
               >
                 Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/allJobs"
+                style={({ isActive,isTransitioning }) => {
+                  return {
+                    fontWeight: isActive ? "bolder" : "bold",
+                    fontSize:isActive?"16px":"",
+                    color:isActive?"#11B719":"#3d5270",
+                    background:isActive?"none":"",
+                    textDecoration:isActive?"underline":"",
+                    viewTransitionName: isTransitioning ? "slide" : "",
+                  };
+                }}
+              >
+                All Jobs
               </NavLink>
             </li>
             <li>
@@ -184,6 +202,23 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
+          <li>
+              <NavLink
+                to="/allJobs"
+                style={({ isActive,isTransitioning }) => {
+                  return {
+                    fontWeight: isActive ? "bolder" : "bold",
+                    fontSize:isActive?"16px":"",
+                    color:isActive?"#11B719":"#3d5270",
+                    background:isActive?"none":"",
+                    textDecoration:isActive?"underline":"",
+                    viewTransitionName: isTransitioning ? "slide" : "",
+                  };
+                }}
+              >
+                All Jobs
+              </NavLink>
+            </li>
           <li>
             <NavLink
               to="/addJob"
