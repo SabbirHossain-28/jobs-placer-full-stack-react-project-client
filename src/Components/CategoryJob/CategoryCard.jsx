@@ -51,6 +51,7 @@ const CategoryCard = ({ data }) => {
               tabIndex="0"
               role="link"
             >
+              Employer Name:
               {jobPosterName}
             </a>
           </div>

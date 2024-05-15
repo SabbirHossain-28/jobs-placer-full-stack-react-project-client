@@ -23,7 +23,7 @@ const CategoryJob = () => {
     return <div className="  flex items-center justify-center"><Lottie style={{ width: "300px" }} animationData={loadingLottie}></Lottie></div>
   }
   return (
-    <div className="max-w-7xl mx-auto py-16">
+    <div className="max-w-7xl mx-auto py-16 px-2 lg:px-0">
       <div className="mb-6 text-center">
         <h2 className="text-5xl font-lora font-bold text-teal-700 mb-4">
           Discover Your Perfect Fit
@@ -36,7 +36,7 @@ const CategoryJob = () => {
           to suit your lifestyle and career goals.
         </p>
       </div>
-      <Tabs>
+      <Tabs className="border-2 border-gray-500 shadow-xl dark:border-white p-2 rounded-lg">
         <div className="text-center font-inter text-xs lg:text-xl font-semibold text-gray-500">
           <TabList>
             <Tab selectedClassName="bg-[#74ee7a] rounded">On-Site Job</Tab>
