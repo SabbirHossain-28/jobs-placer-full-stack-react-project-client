@@ -5,7 +5,7 @@ import useAuth from "../../Auth/AuthHook/useAuth";
 import { Tooltip } from "react-tooltip";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const {user,logOutUser}=useAuth();
@@ -21,13 +21,21 @@ const Navbar = () => {
       html.classList.remove("light")
       html.classList.add("dark")
       setMode("dark")
+      localStorage.setItem("mode","dark")
     }
     else{
       html.classList.remove("dark")
       html.classList.add("light")
       setMode("light")
+      localStorage.setItem("mode","light")
     }
   }
+  useEffect(()=>{
+    const currentMode=localStorage.getItem("mode") || "light";
+    setMode(currentMode);
+    const html=document.documentElement;
+    html.classList.add(currentMode)
+  },[])
   const handleUserLogOut = () => {
     logOutUser().then(() => {
       Swal.fire({
@@ -44,7 +52,7 @@ const Navbar = () => {
     });
   }
   return (
-    <div className="navbar bg-slate-200 dark:bg-zinc-800 shadow-md sticky">
+    <div className="navbar bg-slate-200 dark:bg-gray-800 shadow-md sticky">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -74,7 +82,7 @@ const Navbar = () => {
                   return {
                     fontWeight: isActive ? "bolder" : "bold",
                     fontSize:isActive?"16px":"",
-                    color:isActive?"#11B719":"#3d5270",
+                    color:isActive?"#11B719":"",
                     background:isActive?"none":"",
                     textDecoration:isActive?"underline":"",
                     viewTransitionName: isTransitioning ? "slide" : "",
@@ -91,7 +99,7 @@ const Navbar = () => {
                   return {
                     fontWeight: isActive ? "bolder" : "bold",
                     fontSize:isActive?"16px":"",
-                    color:isActive?"#11B719":"#3d5270",
+                    color:isActive?"#11B719":"",
                     background:isActive?"none":"",
                     textDecoration:isActive?"underline":"",
                     viewTransitionName: isTransitioning ? "slide" : "",
@@ -108,7 +116,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -125,7 +133,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -142,7 +150,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -150,40 +158,6 @@ const Navbar = () => {
               }}
             >
               Applied Jobs
-            </NavLink>
-          </li>
-            <li>
-          <NavLink
-              to="/login"
-              style={({ isActive,isTransitioning }) => {
-                return {
-                  fontWeight: isActive ? "bolder" : "bold",
-                  fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#3d5270",
-                  background:isActive?"none":"",
-                  textDecoration:isActive?"underline":"",
-                  viewTransitionName: isTransitioning ? "slide" : "",
-                };
-              }}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-          <NavLink
-              to="/register"
-              style={({ isActive,isTransitioning }) => {
-                return {
-                  fontWeight: isActive ? "bolder" : "bold",
-                  fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#3d5270",
-                  background:isActive?"none":"",
-                  textDecoration:isActive?"underline":"",
-                  viewTransitionName: isTransitioning ? "slide" : "",
-                };
-              }}
-            >
-              Register
             </NavLink>
           </li>
           </ul>
@@ -208,7 +182,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -225,7 +199,7 @@ const Navbar = () => {
                   return {
                     fontWeight: isActive ? "bolder" : "bold",
                     fontSize:isActive?"16px":"",
-                    color:isActive?"#11B719":"#3d5270",
+                    color:isActive?"#11B719":"",
                     background:isActive?"none":"",
                     textDecoration:isActive?"underline":"",
                     viewTransitionName: isTransitioning ? "slide" : "",
@@ -242,7 +216,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -259,7 +233,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -276,7 +250,7 @@ const Navbar = () => {
                 return {
                   fontWeight: isActive ? "bolder" : "bold",
                   fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
+                  color:isActive?"#11B719":"",
                   background:isActive?"none":"",
                   textDecoration:isActive?"underline":"",
                   viewTransitionName: isTransitioning ? "slide" : "",
@@ -284,40 +258,6 @@ const Navbar = () => {
               }}
             >
               Applied Jobs
-            </NavLink>
-          </li>
-          <li>
-          <NavLink
-              to="/login"
-              style={({ isActive,isTransitioning }) => {
-                return {
-                  fontWeight: isActive ? "bolder" : "bold",
-                  fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#1F2937",
-                  background:isActive?"none":"",
-                  textDecoration:isActive?"underline":"",
-                  viewTransitionName: isTransitioning ? "slide" : "",
-                };
-              }}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-          <NavLink
-              to="/register"
-              style={({ isActive,isTransitioning }) => {
-                return {
-                  fontWeight: isActive ? "bolder" : "bold",
-                  fontSize:isActive?"16px":"",
-                  color:isActive?"#11B719":"#3d5270",
-                  background:isActive?"none":"",
-                  textDecoration:isActive?"underline":"",
-                  viewTransitionName: isTransitioning ? "slide" : "",
-                };
-              }}
-            >
-              Register
             </NavLink>
           </li>
         </ul>

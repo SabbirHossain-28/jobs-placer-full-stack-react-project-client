@@ -2,8 +2,8 @@ import { GrWorkshop } from "react-icons/gr";
 
 const Footer = () => {
   return (
-    <div className="border-t">
-      <footer className="bg-white">
+    <div className="border-t-2 border-gray-800">
+      <footer className="bg-slate-200 dark:bg-gray-800">
         <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
@@ -19,8 +19,7 @@ const Footer = () => {
               </div>
 
               <p className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Incidunt consequuntur amet culpa cum itaque neque.
+              Discover your next career move with Jobs Placer, your ultimate destination for job opportunities across various industries. Explore a wide range of job listings, from on-site to remote positions, and take the next step towards your professional goals
               </p>
 
               <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
@@ -113,29 +112,29 @@ const Footer = () => {
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
               <div className="text-center sm:text-left">
-                <p className="text-lg font-medium text-gray-900">About Us</p>
+                <p className="text-lg font-medium text-gray-500">About Us</p>
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       Company History
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       Meet the Team
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       Employee Handbook
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       Careers{" "}
                     </a>
@@ -144,33 +143,33 @@ const Footer = () => {
               </div>
 
               <div className="text-center sm:text-left">
-                <p className="text-lg font-medium text-gray-900">
+                <p className="text-lg font-medium text-gray-500">
                   Our Services
                 </p>
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       Web Development
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       Web Design{" "}
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       Marketing{" "}
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       Google Ads{" "}
                     </a>
@@ -179,28 +178,28 @@ const Footer = () => {
               </div>
 
               <div className="text-center sm:text-left">
-                <p className="text-lg font-medium text-gray-900">
+                <p className="text-lg font-medium text-gray-500">
                   Helpful Links
                 </p>
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       FAQs{" "}
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-gray-700 transition hover:text-gray-700/75">
+                    <a className="text-gray-500 transition hover:text-gray-700/75">
                       {" "}
                       Support{" "}
                     </a>
                   </li>
 
                   <li>
-                    <a className="group flex justify-center lg:justify-start  gap-1.5  ">
-                      <span className="text-gray-700 transition group-hover:text-gray-700/75">
+                    <a className="group flex justify-center md:justify-start lg:justify-start   gap-1.5  ">
+                      <span className="text-gray-500 transition group-hover:text-gray-700/75">
                         Live Chat
                       </span>
 
@@ -214,14 +213,14 @@ const Footer = () => {
               </div>
 
               <div className="text-center sm:text-left">
-                <p className="text-lg font-medium text-gray-900">Contact Us</p>
+                <p className="text-lg font-medium text-gray-500">Contact Us</p>
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li>
                     <a className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="size-5 shrink-0 text-gray-900"
+                        className="size-5 shrink-0 text-gray-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -234,7 +233,7 @@ const Footer = () => {
                         />
                       </svg>
 
-                      <span className="flex-1 text-gray-700">john@doe.com</span>
+                      <span className="flex-1 text-gray-500">jobs_placer@gmail.com</span>
                     </a>
                   </li>
 
@@ -242,7 +241,7 @@ const Footer = () => {
                     <a className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="size-5 shrink-0 text-gray-900"
+                        className="size-5 shrink-0 text-gray-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -255,14 +254,14 @@ const Footer = () => {
                         />
                       </svg>
 
-                      <span className="flex-1 text-gray-700">0123456789</span>
+                      <span className="flex-1 text-gray-500">0123456789</span>
                     </a>
                   </li>
 
                   <li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="size-5 shrink-0 text-gray-900"
+                      className="size-5 shrink-0 text-gray-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -280,8 +279,8 @@ const Footer = () => {
                       />
                     </svg>
 
-                    <address className="-mt-0.5 flex-1 not-italic text-gray-700">
-                      213 Lane, London, United Kingdom
+                    <address className="-mt-0.5 flex-1 not-italic text-gray-500">
+                      Jamuna Future Park,Road-123,d-block
                     </address>
                   </li>
                 </ul>

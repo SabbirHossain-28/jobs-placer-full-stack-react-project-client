@@ -50,10 +50,10 @@ const AllJobs = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto mb-12 mt-12 shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
+    <div className=" shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
       <div className="text-center mb-12 text-gray-800 dark:text-gray-400">
-        <h2 className="text-4xl font-lora  font-semibold">
-          Manage Your Job Listings on Jobs Placer
+        <h2 className="text-4xl font-lora  font-semibold mb-4">
+          Manage Your Job Listings on Jobs Placer | Jobs Placer
         </h2>
         <p>
           Welcome to your personal job management page on Jobs Placer! Here, you
@@ -68,7 +68,7 @@ const AllJobs = () => {
           to the next level
         </p>
       </div>
-      <div className="border  p-4">
+      <div className=" max-w-7xl mx-auto border  p-4">
         <div className="my-2">
           <div className="relative">
             <form  onSubmit={handleSearch}>
@@ -116,28 +116,28 @@ const AllJobs = () => {
           <table className="table text-gray-800 dark:text-gray-400">
             {/* head */}
             <thead className="text-gray-800 dark:text-gray-400">
-              <tr className="border">
+              <tr className="border-black dark:border-white">
                 <th></th>
-                <th className="border">Job Title</th>
-                <th className="border">Salary</th>
-                <th className="border">Posting Date</th>
-                <th className="border">Deadline</th>
-                <th className="border">Details</th>
+                <th className="border-black dark:border-white">Job Title</th>
+                <th className="border-black dark:border-white">Salary</th>
+                <th className="border-black dark:border-white">Posting Date</th>
+                <th className="border-black dark:border-white">Deadline</th>
+                <th className="border-black dark:border-white">Details</th>
               </tr>
             </thead>
             <tbody>
               {allJobsData.map((listData, idx) => (
                 <tr key={idx}>
-                  <th className="border">{idx + 1}</th>
-                  <td className="border">{listData.jobTitle}</td>
-                  <td className="border">{listData.salaryRange}</td>
-                  <td className="border">{listData.jobPostingDate}</td>
-                  <td className="border">
+                  <th className="border-black dark:border-white">{idx + 1}</th>
+                  <td className="border-black dark:border-white">{listData.jobTitle}</td>
+                  <td className="border-black dark:border-white">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white">{listData.jobPostingDate}</td>
+                  <td className="border-black dark:border-white">
                     {new Date(
                       listData.applicationDeadline
                     ).toLocaleDateString()}
                   </td>
-                  <td className="border">
+                  <td className="border-black dark:border-white">
                     <Link to={`/jobDetails/${listData._id}`}>
                       <button className="btn btn-xs bg-green-500">
                         <TbListDetails className="text-xl"></TbListDetails>

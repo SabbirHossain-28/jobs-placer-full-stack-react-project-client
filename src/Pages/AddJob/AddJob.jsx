@@ -21,58 +21,62 @@ const AddJob = () => {
 
   const onSubmit = (data) => {
     // console.table(data);
-    const {url,title,category,salary,description,posting_date}=data;
-    const addJobData={
-        jobBannerURL:url,
-        jobTitle:title,
-        jobPosterName:user?.displayName,
-        jobPosterEmail:user?.email,
-        jobCategory:category,
-        salaryRange:salary,
-        jobDescription:description,
-        jobPostingDate:posting_date,
-        applicationDeadline:startDate,
-        jobApplicantsNumber:0
-    }
-    fetch(`${import.meta.env.VITE_LOCAL_URL}/jobs`,{
-        method:"POST",
-        headers:{
-            "content-type":"application/json"
-        },
-        body:JSON.stringify(addJobData)
+    const { url, title, category, salary, description, posting_date } = data;
+    const addJobData = {
+      jobBannerURL: url,
+      jobTitle: title,
+      jobPosterName: user?.displayName,
+      jobPosterEmail: user?.email,
+      jobCategory: category,
+      salaryRange: salary,
+      jobDescription: description,
+      jobPostingDate: posting_date,
+      applicationDeadline: startDate,
+      jobApplicantsNumber: 0,
+    };
+    fetch(`${import.meta.env.VITE_LOCAL_URL}/jobs`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addJobData),
     })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.insertedId){
-            Swal.fire({
-                title: "Welcome to JobsPlacer",
-                text: "You are successfully login",
-                icon: "success",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Ok",
-              })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Welcome to JobsPlacer",
+            text: "You are successfully login",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Ok",
+          });
         }
-    })
-    .catch(error=>{
+      })
+      .catch((error) => {
         console.error(error);
-    })
+      });
   };
   return (
-    <div className="my-12">
-      <div className="max-w-7xl mx-auto border  shadow-xl   bg-slate-200 dark:bg-gray-900">
-        <div className=" flex flex-col  border  justify-center items-center">
-          <div className="p-6 ">
+    <div className="">
+      <div className=" shadow-xl p-12   bg-slate-200 dark:bg-gray-900">
+        <div className=" flex flex-col  justify-center items-center">
+          <div className="p-6 text-gray-800 dark:text-gray-400">
             <div className="flex justify-center mx-auto">
-              <GrWorkshop className="text-5xl text-[#11B719]"></GrWorkshop>
+              {/* <GrWorkshop className="text-5xl text-[#11B719]"></GrWorkshop>
               <h4 className="text-5xl text-teal-800 font-lora font-bold">
                 Jobs<span className="text-[#11B719]">Placer</span>
-              </h4>
+              </h4> */}
+              <h2 className="text-4xl font-lora  font-semibold">
+                Manage Your Job Listings on Jobs Placer | Jobs Placer
+              </h2>
             </div>
             <div className="flex items-center justify-center mt-4">
-              <p className="font-medium text-center text-gray-800 dark:text-gray-400">
-                Welcome to Job Placer – your gateway to career opportunities!
-                Log in to access exclusive job listings, personalized
-                recommendations, and tools to streamline your job search.
+              <p className=" text-center">
+                Elevate your employer brand with our user-friendly Add Jobs
+                interface. Effortlessly create captivating job postings that
+                showcase your companies culture and values. Engage with
+                prospective candidates and build a team that drives success.
               </p>
             </div>
           </div>
@@ -132,7 +136,6 @@ const AddJob = () => {
                       readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Your Name"
-                      
                     />
                   </div>
                   <div className="mt-6 lg:w-1/2">
@@ -146,7 +149,6 @@ const AddJob = () => {
                       readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Your Email"
-                      
                     />
                   </div>
                 </div>
@@ -227,7 +229,7 @@ const AddJob = () => {
                       readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Total Job Applicants"
-                      
+
                       // {...register("applicants", { required: true })}
                     />
                   </div>

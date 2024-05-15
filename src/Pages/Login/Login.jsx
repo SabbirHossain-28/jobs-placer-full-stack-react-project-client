@@ -110,8 +110,8 @@ const Login = () => {
     return
   }
   return (
-    <div className="my-12">
-      <div className="max-w-7xl mx-auto flex flex-col  lg:flex-row gap-2 border  shadow-xl   bg-slate-200 dark:bg-gray-900">
+    <div className="">
+      <div className="py-16 px-16 flex flex-col  lg:flex-row gap-2   shadow-xl   bg-slate-200 dark:bg-gray-900">
         <div className=" lg:w-1/2 flex justify-center items-center">
           <img
             className="h-full rounded-tr-full rounded-br-full  rounded-r-2xl"

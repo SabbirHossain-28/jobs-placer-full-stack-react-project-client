@@ -5,7 +5,9 @@ const Home = () => {
     return (
         <div >
             <Banner></Banner>
+            <div className="bg-slate-200 dark:bg-gray-800">
             <CategoryJob></CategoryJob>
+            </div>
         </div>
     );
 };

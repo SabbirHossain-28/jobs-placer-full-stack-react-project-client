@@ -1,7 +1,5 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import useAuth from "../../Auth/AuthHook/useAuth";
-import Swal from "sweetalert2";
 
 const CategoryCard = ({ data }) => {
 
@@ -15,22 +13,22 @@ const CategoryCard = ({ data }) => {
     jobApplicantsNumber,
   } = data || {};
   return (
-    <div>
-      <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div className="flex items-center justify-between">
+    <div className="mt-12">
+      <div className="lg:max-w-2xl px-8 py-4 bg-slate-200 shadow-xl  rounded-lg border-2 border-gray-500 dark:bg-gray-800">
+        <div className="flex flex-col md:flex-row md:items-center lg:items-center lg:justify-between md:justify-between">
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Posting Date:{jobPostingDate}
           </span>
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Deadline:{new Date(applicationDeadline).toLocaleDateString()}
           </span>
-          <a
-            className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
+          <span
+            className=" text-gray-600  py-1 text-sm font-bold  transition-colors duration-300 transform  rounded cursor-pointer hover:bg-gray-500"
             tabIndex="0"
             role="button"
           >
             Applicant:{jobApplicantsNumber}
-          </a>
+          </span>
         </div>
 
         <div className="mt-2">
@@ -41,12 +39,6 @@ const CategoryCard = ({ data }) => {
           >
             {jobTitle}
           </a>
-          {/* <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-            expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-            enim reprehenderit nisi, accusamus delectus nihil quis facere in
-            modi ratione libero!
-          </p> */}
           <p className="mt-2 text-gray-600 dark:text-gray-300">
             Salary-range:{salaryRange}
           </p>

@@ -74,7 +74,7 @@ export default function Banner() {
         ></div>
         {
             swiperSlideContent.map((contentData,idx)=>(<SwiperSlide key={idx}>
-                <div className="flex flex-col items-center lg:flex-row ">
+                <div className="flex flex-col text-center lg:text-left text-[#41b943] items-center lg:flex-row ">
                   <div className="lg:w-1/2">
                     <div className="title font-lora font-bold" data-swiper-parallax="-300">
                       {contentData.title}
@@ -82,7 +82,7 @@ export default function Banner() {
                     <div className="subtitle font-inter mb-2" data-swiper-parallax="-200">
                       {contentData.sub_title}
                     </div>
-                    <div className="text font-inter" data-swiper-parallax="-100">
+                    <div className="text  font-inter" data-swiper-parallax="-100">
                       <p>
                         {contentData.description}
                       </p>
