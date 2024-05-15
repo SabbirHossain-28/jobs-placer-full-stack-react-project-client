@@ -6,6 +6,7 @@ import { Tooltip } from "react-tooltip";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import { MdLightMode,MdDarkMode } from "react-icons/md";
 
 const Navbar = () => {
   const {user,logOutUser}=useAuth();
@@ -53,7 +54,7 @@ const Navbar = () => {
   }
   return (
     <div className="navbar bg-slate-200 dark:bg-gray-800 shadow-md sticky">
-      <div className="navbar-start">
+      <div className="navbar-start ml-4">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -73,7 +74,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content z-[999] border   mt-3  p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content z-[999] border   mt-3  p-2 shadow bg-base-100 rounded-box w-48"
           >
             <li>
               <NavLink
@@ -109,7 +110,7 @@ const Navbar = () => {
                 All Jobs
               </NavLink>
             </li>
-            <li>
+           {user && <li>
             <NavLink
               to="/addJob"
               style={({ isActive,isTransitioning }) => {
@@ -125,8 +126,8 @@ const Navbar = () => {
             >
               Add Job
             </NavLink>
-          </li>
-          <li>
+          </li>}
+          {user && <li>
             <NavLink
               to="/myAddedJobs"
               style={({ isActive,isTransitioning }) => {
@@ -142,8 +143,8 @@ const Navbar = () => {
             >
               My Added Jobs
             </NavLink>
-          </li>
-          <li>
+          </li>}
+          {user && <li>
             <NavLink
               to="/appliedJobs"
               style={({ isActive,isTransitioning }) => {
@@ -159,7 +160,7 @@ const Navbar = () => {
             >
               Applied Jobs
             </NavLink>
-          </li>
+          </li>}
           <li>
             <NavLink
               to="/blogs"
@@ -179,12 +180,12 @@ const Navbar = () => {
           </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <a className="text-xl">
           <div className="flex items-center">
-            <p className="text-4xl text-[#11B719]">
+            <p className="text-2xl lg:text-4xl text-[#11B719]">
               <GrWorkshop></GrWorkshop>
             </p>
-            <h4 className="text-4xl font-lora">
+            <h4 className=" text-2xl lg:text-4xl font-lora">
               Jobs<span className="text-[#11B719]">Placer</span>
             </h4>
           </div>
@@ -226,7 +227,7 @@ const Navbar = () => {
                 All Jobs
               </NavLink>
             </li>
-          <li>
+         {user && <li>
             <NavLink
               to="/addJob"
               style={({ isActive,isTransitioning }) => {
@@ -242,8 +243,8 @@ const Navbar = () => {
             >
               Add Job
             </NavLink>
-          </li>
-          <li>
+          </li>}
+          {user && <li>
             <NavLink
               to="/myAddedJobs"
               style={({ isActive,isTransitioning }) => {
@@ -259,8 +260,8 @@ const Navbar = () => {
             >
               My Added Jobs
             </NavLink>
-          </li>
-          <li>
+          </li>}
+          {user && <li>
             <NavLink
               to="/appliedJobs"
               style={({ isActive,isTransitioning }) => {
@@ -276,7 +277,7 @@ const Navbar = () => {
             >
               Applied Jobs
             </NavLink>
-          </li>
+          </li>}
           <li>
             <NavLink
               to="/blogs"
@@ -296,11 +297,11 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <button onClick={handleChangeTheme} className="btn">change</button>
+      <div className="navbar-end mr-4">
+        <button onClick={handleChangeTheme} className={`p-2 lg:p-4 ${mode==="light"?"bg-teal-500 text-black":"bg-gray-500"} rounded-full border-none text-2xl mr-3 lg:mr-5 `}>{mode==="light"?<MdLightMode></MdLightMode>:<MdDarkMode></MdDarkMode>}</button>
         {
           user?<div className={`avatar ${user ? "online" : "offline"} online`}>
-          <div id="btn-tooltip" className="w-14 rounded-full">
+          <div id="btn-tooltip" className="w-12 lg:w-16 rounded-full">
             {user ? (
               <img referrerPolicy="no-referrer" src={user?.photoURL} />
             ) : (
