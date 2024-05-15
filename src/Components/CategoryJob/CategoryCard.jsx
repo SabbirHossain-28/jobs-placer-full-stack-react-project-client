@@ -8,7 +8,7 @@ const CategoryCard = ({ data }) => {
   const {
     _id,
     jobTitle,
-    loggedInUserName,
+    jobPosterName,
     applicationDeadline,
     jobPostingDate,
     salaryRange,
@@ -59,7 +59,7 @@ const CategoryCard = ({ data }) => {
               tabIndex="0"
               role="link"
             >
-              {loggedInUserName}
+              {jobPosterName}
             </a>
           </div>
           <Link

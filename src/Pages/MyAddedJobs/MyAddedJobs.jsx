@@ -93,8 +93,8 @@ const MyAddedJobs = () => {
                   <th className="border">{idx + 1}</th>
                   <td className="border">{listData.jobTitle}</td>
                   <td className="border">{listData.jobCategory}</td>
-                  <td className="border">{listData.loggedInUserName}</td>
-                  <td className="border">{listData.loggedInUserEmail}</td>
+                  <td className="border">{listData.jobPosterName}</td>
+                  <td className="border">{listData.jobPosterEmail}</td>
                   <td className="border">{listData.salaryRange}</td>
                   <td className="border">{listData.jobPostingDate}</td>
                   <td className="border">

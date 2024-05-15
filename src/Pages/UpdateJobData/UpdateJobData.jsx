@@ -23,8 +23,8 @@ const {
     _id,
     jobBannerURL,
     jobTitle,
-    loggedInUserName,
-    loggedInUserEmail,
+    jobPosterName,
+    jobPosterEmail,
     jobCategory,
     salaryRange,
     jobDescription,
@@ -40,8 +40,8 @@ const onSubmit=(data)=>{
     const updateJobData={
         jobBannerURL:url,
         jobTitle:title,
-        loggedInUserName:user?.displayName,
-        loggedInUserEmail:user?.email,
+        jobPosterName:user?.displayName,
+        jobPosterEmail:user?.email,
         jobCategory:category,
         salaryRange:salary,
         jobDescription:description,
@@ -147,7 +147,7 @@ return (
                     <input
                       type="text"
                       name="name"
-                      value={loggedInUserName}
+                      value={jobPosterName}
                       readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Your Name"
@@ -160,7 +160,7 @@ return (
                     <input
                       type="email"
                       name="email"
-                      value={loggedInUserEmail}
+                      value={jobPosterEmail}
                       readOnly
                       className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 mt-1"
                       placeholder="Your Email"

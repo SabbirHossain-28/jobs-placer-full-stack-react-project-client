@@ -8,18 +8,10 @@ const AppliedJobs = () => {
   const [filterCategory, setFilterCategory] = useState("");
   const axiosSecure = useAxiosSecure();
 
+  console.log(user);
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosSecure(`/application?email=${user.email}`);
-      setAppliedJobsData(data);
-    };
-    getData();
-  }, [user, axiosSecure, filterCategory]);
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axiosSecure(
-        `/categoryFilter?filter=${filterCategory}`
-      );
+      const { data } = await axiosSecure(`/application?email=${user.email}&filter=${filterCategory}`);
       setAppliedJobsData(data);
     };
     getData();
@@ -42,7 +34,7 @@ const AppliedJobs = () => {
       <div className="border  p-4">
         <div className="my-2">
           <select onChange={e=>setFilterCategory(e.target.value)} value={filterCategory} className="w-full p-2" name="category" id="">
-            <option value="">Select Category For Filter</option>
+            <option value="">All Applied Jobs</option>
             <option value="On Site">On Site</option>
             <option value="Remote">Remote</option>
             <option value="Hybrid">Hybrid</option>
@@ -57,11 +49,11 @@ const AppliedJobs = () => {
                 <th></th>
                 <th className="border">Job Title</th>
                 <th className="border">Job Category</th>
-                <th className="border">User Email</th>
+                <th className="border">Employer Email</th>
+                <th className="border">Applicant Email</th>
                 <th className="border">Salary</th>
                 <th className="border">Posting Date</th>
                 <th className="border">Deadline</th>
-                <th className="border">Total Applicants</th>
               </tr>
             </thead>
             <tbody>
@@ -70,7 +62,8 @@ const AppliedJobs = () => {
                   <th className="border">{idx + 1}</th>
                   <td className="border">{listData.jobTitle}</td>
                   <td className="border">{listData.jobCategory}</td>
-                  <td className="border">{listData.loggedInUserEmail}</td>
+                  <td className="border">{listData.jobPosterEmail}</td>
+                  <td className="border">{listData.userEmail}</td>
                   <td className="border">{listData.salaryRange}</td>
                   <td className="border">{listData.jobPostingDate}</td>
                   <td className="border">
@@ -78,7 +71,6 @@ const AppliedJobs = () => {
                       listData.applicationDeadline
                     ).toLocaleDateString()}
                   </td>
-                  <td className="border">{listData.jobApplicantsNumber}</td>
                   {/* <td className="border">
                     <Link to={`/updateJobData/${listData._id}`}>
                       <button className="btn btn-xs bg-green-500">

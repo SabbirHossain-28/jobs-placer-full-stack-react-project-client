@@ -25,8 +25,8 @@ const AddJob = () => {
     const addJobData={
         jobBannerURL:url,
         jobTitle:title,
-        loggedInUserName:user?.displayName,
-        loggedInUserEmail:user?.email,
+        jobPosterName:user?.displayName,
+        jobPosterEmail:user?.email,
         jobCategory:category,
         salaryRange:salary,
         jobDescription:description,

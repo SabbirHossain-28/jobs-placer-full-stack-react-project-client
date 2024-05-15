@@ -107,7 +107,7 @@ const AllJobs = () => {
                   />
                 </svg>
               </button> */}
-              <input type="submit" value="search" />
+              <input className="border mr-8 rounded-lg bg-green-500 text-white p-1" type="submit" value="search" />
             </span>
             </form>
           </div>

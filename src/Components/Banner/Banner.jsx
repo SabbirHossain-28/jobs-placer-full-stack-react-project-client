@@ -11,7 +11,7 @@ import slideImg2 from "../../assets/images/slide2.jpg";
 import slideImg3 from "../../assets/images/slide3.jpg";
 import slideImg4 from "../../assets/images/slide4.jpg";
 
-import { Parallax, Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Parallax, Pagination, Autoplay } from "swiper/modules";
 
 const swiperSlideContent = [
   {
@@ -46,23 +46,21 @@ const swiperSlideContent = [
 
 export default function Banner() {
   return (
-    <div className="my-12">
+    <div className="">
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
         }}
         speed={600}
         parallax={true}
         pagination={{
           clickable: true,
         }}
-        navigation={true}
         autoplay={{
-          delay: 4000,
+          delay: 2000,
           disableOnInteraction: false,
         }}
-        modules={[Parallax, Pagination, Navigation, Autoplay]}
+        modules={[Parallax, Pagination, Autoplay]}
         className="mySwiper"
       >
         <div
@@ -76,7 +74,7 @@ export default function Banner() {
         ></div>
         {
             swiperSlideContent.map((contentData,idx)=>(<SwiperSlide key={idx}>
-                <div className="flex flex-col items-center lg:flex-row z-[99]">
+                <div className="flex flex-col items-center lg:flex-row ">
                   <div className="lg:w-1/2">
                     <div className="title font-lora font-bold" data-swiper-parallax="-300">
                       {contentData.title}
@@ -91,7 +89,7 @@ export default function Banner() {
                     </div>
                   </div>
                   <div className="lg:w-1/2">
-                    <img className="rounded-full" src={contentData.image} alt="" />
+                    <img className="rounded-full h-96 w-full" src={contentData.image} alt="" />
                   </div>
                 </div>
               </SwiperSlide>))

@@ -3,7 +3,7 @@ import CategoryJob from "../../Components/CategoryJob/CategoryJob";
 
 const Home = () => {
     return (
-        <div>
+        <div >
             <Banner></Banner>
             <CategoryJob></CategoryJob>
         </div>

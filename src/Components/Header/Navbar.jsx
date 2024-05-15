@@ -5,6 +5,7 @@ import useAuth from "../../Auth/AuthHook/useAuth";
 import { Tooltip } from "react-tooltip";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Navbar = () => {
   const {user,logOutUser}=useAuth();
@@ -12,6 +13,21 @@ const Navbar = () => {
   // const location=useLocation();
   // const from=location.state || "/"
 
+  const [mode,setMode]=useState("light")
+
+  const handleChangeTheme=()=>{
+    const html=document.documentElement;
+    if(mode ==="light"){
+      html.classList.remove("light")
+      html.classList.add("dark")
+      setMode("dark")
+    }
+    else{
+      html.classList.remove("dark")
+      html.classList.add("light")
+      setMode("light")
+    }
+  }
   const handleUserLogOut = () => {
     logOutUser().then(() => {
       Swal.fire({
@@ -28,7 +44,7 @@ const Navbar = () => {
     });
   }
   return (
-    <div className="navbar bg-base-100 shadow-md sticky">
+    <div className="navbar bg-slate-200 dark:bg-zinc-800 shadow-md sticky">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +65,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content z-[999] border  mt-3  p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content z-[999] border   mt-3  p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <NavLink
@@ -307,6 +323,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        <button onClick={handleChangeTheme} className="btn">change</button>
         {
           user?<div className={`avatar ${user ? "online" : "offline"} online`}>
           <div id="btn-tooltip" className="w-14 rounded-full">
