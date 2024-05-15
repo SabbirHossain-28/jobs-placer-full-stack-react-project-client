@@ -11,12 +11,13 @@ import UpdateJobData from "../Pages/UpdateJobData/UpdateJobData";
 import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
 import AllJobs from "../Pages/AllJobs/AllJobs";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Blogs from "../Pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -31,8 +32,8 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path:"/allJobs",
-        element:<AllJobs></AllJobs>
+        path: "/allJobs",
+        element: <AllJobs></AllJobs>,
       },
       {
         path: "/jobDetails/:id",
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             <AppliedJobs></AppliedJobs>
           </PrivetRoute>
         ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
     ],
   },

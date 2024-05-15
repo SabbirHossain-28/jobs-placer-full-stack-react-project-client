@@ -160,6 +160,23 @@ const Navbar = () => {
               Applied Jobs
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/blogs"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Blogs
+            </NavLink>
+          </li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">
@@ -258,6 +275,23 @@ const Navbar = () => {
               }}
             >
               Applied Jobs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/blogs"
+              style={({ isActive,isTransitioning }) => {
+                return {
+                  fontWeight: isActive ? "bolder" : "bold",
+                  fontSize:isActive?"16px":"",
+                  color:isActive?"#11B719":"",
+                  background:isActive?"none":"",
+                  textDecoration:isActive?"underline":"",
+                  viewTransitionName: isTransitioning ? "slide" : "",
+                };
+              }}
+            >
+              Blogs
             </NavLink>
           </li>
         </ul>
