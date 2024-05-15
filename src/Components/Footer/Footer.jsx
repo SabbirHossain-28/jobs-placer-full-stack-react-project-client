@@ -2,7 +2,7 @@ import { GrWorkshop } from "react-icons/gr";
 
 const Footer = () => {
   return (
-    <div className="border-t-2 border-gray-800">
+    <div className="border-t-2 border-t-black dark:border-t-gray-500 border-gray-800">
       <footer className="bg-slate-200 dark:bg-gray-800">
         <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
