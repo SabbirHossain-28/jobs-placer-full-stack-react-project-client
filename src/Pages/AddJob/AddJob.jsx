@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
-  console.log(user);
   const {
     register,
     handleSubmit,
@@ -18,7 +17,6 @@ const AddJob = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.table(data);
     const { url, title, category, salary, description, posting_date } = data;
     const addJobData = {
       jobBannerURL: url,

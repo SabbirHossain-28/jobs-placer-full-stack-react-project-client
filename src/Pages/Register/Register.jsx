@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import registerGif from "../../assets/gif/register-form.gif";
 import { GrWorkshop } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
@@ -11,16 +11,10 @@ import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toastId = useRef(null);
-  const {createUser,updateUserProfile,setUser,user,loading}=useAuth();
+  const {createUser,updateUserProfile,setUser,user}=useAuth();
   const location=useLocation();
   const navigate=useNavigate()
   const from=location.state || "/";
-
-  useEffect(()=>{
-    if(user){
-      navigate("/")
-    }
-  },[user,navigate])
 
   const {
     register,
@@ -30,7 +24,6 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const {name,url,email,password,}=data;
-    console.log(name,url,email,password);
 
     const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
@@ -79,9 +72,7 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
 
-  if(user || loading){
-    return
-  }
+ 
   
   return (
     <div className="">

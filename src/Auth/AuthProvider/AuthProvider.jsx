@@ -59,9 +59,7 @@ const AuthProvider = ({ children }) => {
       }
       else{
         axios.post(`${import.meta.env.VITE_LOCAL_URL}/logout`,activeUser,{withCredentials:true})
-        // .then(res =>{
-        //   console.log(res.data);
-        // })
+       
       }
     });
     return () => {

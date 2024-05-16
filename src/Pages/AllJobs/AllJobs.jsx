@@ -30,7 +30,6 @@ const AllJobs = () => {
     };
     getData();
   }, [search]);
-  // console.log(count);
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [
     ...Array(numberOfPages)
@@ -43,7 +42,6 @@ const AllJobs = () => {
     const text=e.target.search.value
     setSearch(text);
   }
-  console.log(search);
 
   const handleCurrentPage = (value) => {
     setCurrentPage(value);

@@ -58,7 +58,7 @@ const JobDetails = () => {
       );
       return;
     }
-    console.table(applicationData);
+    
     if (userEmail === jobPosterEmail && !toast.isActive(toastId.current)) {
       return (toast.current = toast.error("You are not eligible to apply"));
     }

@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBgGif from "../../assets/gif/login-form.gif";
 import { GrWorkshop } from "react-icons/gr";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Auth/AuthHook/useAuth";
@@ -17,13 +17,13 @@ const Login = () => {
   const location=useLocation();
   const from=location.state || "/";
 
-  const { loginUser, loginWithGoogle,user,loading } = useAuth();
+  const { loginUser, loginWithGoogle} = useAuth();
 
-  useEffect(()=>{
-    if(user){
-      navigate("/")
-    }
-  },[user,navigate])
+  // useEffect(()=>{
+  //   if(user){
+  //     navigate("/")
+  //   }
+  // },[user,navigate])
 
   const {
     register,
@@ -78,9 +78,6 @@ const Login = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((userCredential) => {
-        // console.log(userCredential.user);
-        // const {data}=axios.post(`${import.meta.env.VITE_LOCAL_URL}/jwt`,{email:userCredential?.user?.email},{withCredentials:true})
-        // console.log(data);
         if (userCredential) {
           Swal.fire({
             title: "Welcome to JobsPlacer",
@@ -106,9 +103,9 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  if(user || loading){
-    return
-  }
+  // if(user || loading){
+  //   return
+  // }
   return (
     <div className="">
       <div className="py-16 px-16 flex flex-col  lg:flex-row gap-2   shadow-xl   bg-slate-200 dark:bg-gray-900">

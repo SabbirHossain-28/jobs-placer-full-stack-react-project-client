@@ -18,7 +18,6 @@ const CategoryJob = () => {
     };
     getData();
   }, []);
-  // console.log(jobsData);
   if(loading){
     return <div className="  flex items-center justify-center"><Lottie style={{ width: "300px" }} animationData={loadingLottie}></Lottie></div>
   }

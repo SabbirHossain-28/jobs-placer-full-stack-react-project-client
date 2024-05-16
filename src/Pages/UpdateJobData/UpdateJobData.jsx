@@ -35,7 +35,6 @@ const {
 const [startDate, setStartDate] = useState(new Date(applicationDeadline)||new Date());
 
 const onSubmit=(data)=>{
-    console.log(data);
     const {url,title,category,salary,description,posting_date,applicants}=data;
     const updateJobData={
         jobBannerURL:url,
