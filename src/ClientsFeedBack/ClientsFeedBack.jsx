@@ -1,8 +1,8 @@
 const ClientsFeedBack = () => {
   return (
-    <div className="pb-12">
-      <section className="bg-slate-300 dark:bg-gray-800 p-12">
-        <div className="max-w-7xl mx-auto px-6 py-10 shadow-xl ">
+    <div className="pb- ">
+      <section className="bg-slate-300 dark:bg-gray-800 p-12 ">
+        <div className="max-w-7xl mx-auto px-6 py-10 shadow-xl border border-black dark:border-white rounded-xl">
           <h1 className="text-5xl font-lora font-semibold text-center text-teal-700 capitalize lg:text-3xl dark:text-white">
             What our <span className="text-[#4be053]">clients</span> say
           </h1>
@@ -13,7 +13,7 @@ const ClientsFeedBack = () => {
           </p>
 
           <section className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-2 xl:grid-cols-3">
-            <div className="p-8 border rounded-lg dark:border-gray-700">
+            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
               Working with Jobs Placer was an amazing experience. They
                 helped us find the perfect candidates for our team, saving us
@@ -34,7 +34,7 @@ const ClientsFeedBack = () => {
               </div>
             </div>
 
-            <div className="p-8 border rounded-lg dark:border-gray-700">
+            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
                 “XFactor Solution has been working with Jobs Placer for years,
                 and they never disappoint. Their dedication to finding the
@@ -55,7 +55,7 @@ const ClientsFeedBack = () => {
               </div>
             </div>
 
-            <div className="p-8 border rounded-lg dark:border-gray-700">
+            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
                 “We are very satisfied with the services provided by Jobs
                 Placer. They helped us build a talented and diverse team that

@@ -19,7 +19,7 @@ const AppliedJobs = () => {
   console.log(appliedJobsData);
 
   return (
-    <div className="shadow-xl  bg-slate-200 dark:bg-gray-900 py-14 px-8">
+    <div className="shadow-xl  bg-slate-200 dark:bg-gray-900 py-14 px-12">
       <div className="text-center mb-12 text-gray-800 dark:text-gray-400">
         <h2 className="text-4xl font-lora  font-semibold">
           Track Your Career Journey | Jobs Placer
@@ -31,9 +31,9 @@ const AppliedJobs = () => {
           new horizons with ease.
         </p>
       </div>
-      <div className="border-black dark:border-white  p-4">
-        <div className="my-2">
-          <select onChange={e=>setFilterCategory(e.target.value)} value={filterCategory} className="w-full p-2" name="category" id="">
+      <div className="border-black dark:border-white border">
+        <div className="my-4 mx-4">
+          <select onChange={e=>setFilterCategory(e.target.value)} value={filterCategory} className="w-full p-4 rounded-lg" name="category" id="">
             <option value="">All Applied Jobs</option>
             <option value="On Site">On Site</option>
             <option value="Remote">Remote</option>
@@ -45,28 +45,28 @@ const AppliedJobs = () => {
           <table className="table text-gray-800 dark:text-gray-400">
             {/* head */}
             <thead className="text-gray-800 dark:text-gray-400">
-              <tr className="border-black dark:border-white">
+              <tr className="border-black dark:border-white border">
                 <th></th>
-                <th className="border-black dark:border-white">Job Title</th>
-                <th className="border-black dark:border-white">Job Category</th>
-                <th className="border-black dark:border-white">Employer Email</th>
-                <th className="border-black dark:border-white">Applicant Email</th>
-                <th className="border-black dark:border-white">Salary</th>
-                <th className="border-black dark:border-white">Posting Date</th>
-                <th className="border-black dark:border-white">Deadline</th>
+                <th className="border-black dark:border-white border">Job Title</th>
+                <th className="border-black dark:border-white border">Job Category</th>
+                <th className="border-black dark:border-white border">Employer Email</th>
+                <th className="border-black dark:border-white border">Applicant Email</th>
+                <th className="border-black dark:border-white border">Salary</th>
+                <th className="border-black dark:border-white border">Posting Date</th>
+                <th className="border-black dark:border-white border">Deadline</th>
               </tr>
             </thead>
             <tbody>
               {appliedJobsData.map((listData, idx) => (
                 <tr key={idx}>
-                  <th className="border-black dark:border-white">{idx + 1}</th>
-                  <td className="border-black dark:border-white">{listData.jobTitle}</td>
-                  <td className="border-black dark:border-white">{listData.jobCategory}</td>
-                  <td className="border-black dark:border-white">{listData.jobPosterEmail}</td>
-                  <td className="border-black dark:border-white">{listData.userEmail}</td>
-                  <td className="border-black dark:border-white">{listData.salaryRange}</td>
-                  <td className="border-black dark:border-white">{listData.jobPostingDate}</td>
-                  <td className="border-black dark:border-white">
+                  <th className="border-black dark:border-white border">{idx + 1}</th>
+                  <td className="border-black dark:border-white border">{listData.jobTitle}</td>
+                  <td className="border-black dark:border-white border">{listData.jobCategory}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPosterEmail}</td>
+                  <td className="border-black dark:border-white border">{listData.userEmail}</td>
+                  <td className="border-black dark:border-white border">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPostingDate}</td>
+                  <td className="border-black dark:border-white border">
                     {new Date(
                       listData.applicationDeadline
                     ).toLocaleDateString()}

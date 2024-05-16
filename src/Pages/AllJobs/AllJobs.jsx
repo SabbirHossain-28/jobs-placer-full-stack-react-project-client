@@ -50,8 +50,9 @@ const AllJobs = () => {
   };
 
   return (
-    <div className=" shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
-      <div className="text-center mb-12 text-gray-800 dark:text-gray-400">
+    <div className=" shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-12">
+      <div className="border-black border-2 p-8">
+      <div className="text-center  mb-12 text-gray-800 dark:text-gray-400">
         <h2 className="text-4xl font-lora  font-semibold mb-4">
           Manage Your Job Listings on Jobs Placer | Jobs Placer
         </h2>
@@ -68,9 +69,9 @@ const AllJobs = () => {
           to the next level
         </p>
       </div>
-      <div className=" max-w-7xl mx-auto border  p-4">
+      <div className=" max-w-7xl mx-auto border-black dark:border-white border-2  p-4">
         <div className="my-2">
-          <div className="relative">
+          <div className="relative border-black dark:border-white border-2 p-2 rounded-lg">
             <form  onSubmit={handleSearch}>
             <label htmlFor="Search" className="sr-only">
               {" "}
@@ -112,35 +113,35 @@ const AllJobs = () => {
             </form>
           </div>
         </div>
-        <div className="overflow-x-auto ">
+        <div className="overflow-x-auto border-black dark:border-white border-2 rounded-lg">
           <table className="table text-gray-800 dark:text-gray-400">
             {/* head */}
             <thead className="text-gray-800 dark:text-gray-400">
-              <tr className="border-black dark:border-white">
+              <tr className="border-black dark:border-white border">
                 <th></th>
-                <th className="border-black dark:border-white">Job Title</th>
-                <th className="border-black dark:border-white">Salary</th>
-                <th className="border-black dark:border-white">Posting Date</th>
-                <th className="border-black dark:border-white">Deadline</th>
-                <th className="border-black dark:border-white">Details</th>
+                <th className="border-black dark:border-white border">Job Title</th>
+                <th className="border-black dark:border-white border">Salary</th>
+                <th className="border-black dark:border-white border">Posting Date</th>
+                <th className="border-black dark:border-white border">Deadline</th>
+                <th className="border-black dark:border-white border">Details</th>
               </tr>
             </thead>
             <tbody>
               {allJobsData.map((listData, idx) => (
                 <tr key={idx}>
-                  <th className="border-black dark:border-white">{idx + 1}</th>
-                  <td className="border-black dark:border-white">{listData.jobTitle}</td>
-                  <td className="border-black dark:border-white">{listData.salaryRange}</td>
-                  <td className="border-black dark:border-white">{listData.jobPostingDate}</td>
-                  <td className="border-black dark:border-white">
+                  <th className="border-black dark:border-white border">{idx + 1}</th>
+                  <td className="border-black dark:border-white border">{listData.jobTitle}</td>
+                  <td className="border-black dark:border-white border">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPostingDate}</td>
+                  <td className="border-black dark:border-white border">
                     {new Date(
                       listData.applicationDeadline
                     ).toLocaleDateString()}
                   </td>
-                  <td className="border-black dark:border-white">
+                  <td className="border-black dark:border-white border">
                     <Link to={`/jobDetails/${listData._id}`}>
                       <button className="btn btn-xs bg-green-500">
-                        <TbListDetails className="text-xl"></TbListDetails>
+                        <TbListDetails className="text-xl text-black"></TbListDetails>
                       </button>
                     </Link>
                   </td>
@@ -180,8 +181,8 @@ const AllJobs = () => {
                 key={idx}
                 className={`${
                   currentPage === page
-                    ? "bg-[#5ad560] text-white"
-                    : "bg-white text-gray-900"
+                    ? "bg-[#5ad560] text-black dark:text-white"
+                    : "bg-white text-gray-900 dark:text-white"
                 }block size-8 rounded border border-gray-100  text-center leading-8 `}
               >
                 {page}
@@ -211,6 +212,7 @@ const AllJobs = () => {
             </button>
           </li>
         </ol>
+      </div>
       </div>
     </div>
   );

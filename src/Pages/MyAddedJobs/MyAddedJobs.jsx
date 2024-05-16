@@ -50,7 +50,7 @@ const MyAddedJobs = () => {
   };
 
   return (
-    <div className=" shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-8">
+    <div className=" shadow-xl   bg-slate-200 dark:bg-gray-900 py-14 px-12">
       <div className=" max-w-7xl mx-auto text-center mb-12 text-gray-800 dark:text-gray-400">
         <h2 className="text-4xl font-lora mb-4  font-semibold">
           Manage Your Job Listings on Jobs Placer | Jobs Placer
@@ -68,54 +68,54 @@ const MyAddedJobs = () => {
           to the next level
         </p>
       </div>
-      <div className="border-black dark:border-white  p-4">
+      <div className="border-black dark:border-white border">
         <div className="overflow-x-auto ">
-          <table className="table text-gray-800 dark:text-gray-400">
+          <table className="table text-gray-800 dark:text-gray-400 ">
             {/* head */}
-            <thead className="text-gray-800 dark:text-gray-400">
-              <tr className="border-black dark:border-white">
+            <thead className="text-gray-800 dark:text-gray-400 ">
+              <tr className="border-black dark:border-white border">
                 <th></th>
-                <th className="border-black dark:border-white">Job Title</th>
-                <th className="border-black dark:border-white">Job Category</th>
-                <th className="border-black dark:border-white">User Name</th>
-                <th className="border-black dark:border-white">User Email</th>
-                <th className="border-black dark:border-white">Salary</th>
-                <th className="border-black dark:border-white">Posting Date</th>
-                <th className="border-black dark:border-white">Deadline</th>
-                <th className="border-black dark:border-white">Total Applicants</th>
-                <th className="border-black dark:border-white">Update</th>
-                <th className="borborder-black dark:border-whiteder">Delete</th>
+                <th className="border-black dark:border-white border">Job Title</th>
+                <th className="border-black dark:border-white border">Job Category</th>
+                <th className="border-black dark:border-white border">User Name</th>
+                <th className="border-black dark:border-white border">User Email</th>
+                <th className="border-black dark:border-white border">Salary</th>
+                <th className="border-black dark:border-white border">Posting Date</th>
+                <th className="border-black dark:border-white border">Deadline</th>
+                <th className="border-black dark:border-white border">Total Applicants</th>
+                <th className="border-black dark:border-white border">Update</th>
+                <th className="border-black dark:border-white border">Delete</th>
               </tr>
             </thead>
             <tbody>
               {myAddedJobsData.map((listData, idx) => (
                 <tr key={idx}>
-                  <th className="border-black dark:border-white">{idx + 1}</th>
-                  <td className="border-black dark:border-white">{listData.jobTitle}</td>
-                  <td className="border-black dark:border-white">{listData.jobCategory}</td>
-                  <td className="border-black dark:border-white">{listData.jobPosterName}</td>
-                  <td className="border-black dark:border-white">{listData.jobPosterEmail}</td>
-                  <td className="border-black dark:border-white">{listData.salaryRange}</td>
-                  <td className="border-black dark:border-white">{listData.jobPostingDate}</td>
-                  <td className="border-black dark:border-white">
+                  <th className="border-black dark:border-white border">{idx + 1}</th>
+                  <td className="border-black dark:border-white border">{listData.jobTitle}</td>
+                  <td className="border-black dark:border-white border">{listData.jobCategory}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPosterName}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPosterEmail}</td>
+                  <td className="border-black dark:border-white border">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white border">{listData.jobPostingDate}</td>
+                  <td className="border-black dark:border-white border">
                     {new Date(
                       listData.applicationDeadline
                     ).toLocaleDateString()}
                   </td>
-                  <td className="border-black dark:border-white">{listData.jobApplicantsNumber}</td>
-                  <td className="border-black dark:border-white">
+                  <td className="border-black dark:border-white border">{listData.jobApplicantsNumber}</td>
+                  <td className="border-black dark:border-white border">
                     <Link to={`/updateJobData/${listData._id}`}>
                       <button className="btn btn-xs bg-green-500">
-                        <LuClipboardEdit className="text-xl"></LuClipboardEdit>
+                        <LuClipboardEdit className="text-xl text-white"></LuClipboardEdit>
                       </button>
                     </Link>
                   </td>
-                  <td className="border-black dark:border-white">
+                  <td className="border-black dark:border-white border">
                     <button
                       onClick={() => handleDelete(`${listData._id}`)}
                       className="btn btn-xs bg-red-500"
                     >
-                      <MdDeleteForever className="text-xl"></MdDeleteForever>
+                      <MdDeleteForever className="text-xl text-white"></MdDeleteForever>
                     </button>
                   </td>
                 </tr>

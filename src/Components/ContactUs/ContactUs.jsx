@@ -25,7 +25,7 @@ const ContactUs = () => {
                   >
                     Full Name
                   </label>
-                  <input className="w-full p-2 rounded-md" type="text" id="name" />
+                  <input className="w-full p-2 rounded-md" type="text" id="name" placeholder="Your full name"/>
                 </div>
                 <div className="md:w-1/2 lg:w-1/2">
                   <label
@@ -34,7 +34,7 @@ const ContactUs = () => {
                   >
                     Your Email
                   </label>
-                  <input className="w-full p-2 rounded-md" type="email" id="email" />
+                  <input className="w-full p-2 rounded-md" type="email" id="email" placeholder="Your email"/>
                 </div>
               </div>
               <label
@@ -43,7 +43,7 @@ const ContactUs = () => {
               >
                 Subject
               </label>
-              <input className="w-full mb-3 p-2 rounded-md" type="text" id="subject" />
+              <input className="w-full mb-3 p-2 rounded-md" type="text" id="subject" placeholder="Enter your subject"/>
               <label
                 className="block text-gray-500 dark:text-gray-400 text-lg font-medium mb-2"
                 htmlFor="message"
@@ -56,6 +56,7 @@ const ContactUs = () => {
                 cols="30"
                 rows="6"
                 className="w-full  rounded-md"
+                placeholder="Place your message here....."
               ></textarea>
             </form>
   
