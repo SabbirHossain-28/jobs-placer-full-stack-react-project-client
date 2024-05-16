@@ -129,7 +129,7 @@ const AllJobs = () => {
                 <tr key={idx}>
                   <th className="border-black dark:border-white border">{idx + 1}</th>
                   <td className="border-black dark:border-white border">{listData.jobTitle}</td>
-                  <td className="border-black dark:border-white border">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white border">{listData.salaryRange}($)</td>
                   <td className="border-black dark:border-white border">{listData.jobPostingDate}</td>
                   <td className="border-black dark:border-white border">
                     {new Date(

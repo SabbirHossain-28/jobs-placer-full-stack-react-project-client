@@ -40,7 +40,7 @@ const CategoryCard = ({ data }) => {
             {jobTitle}
           </a>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Salary-range:{salaryRange}
+            Salary-range:{salaryRange}($)
           </p>
         </div>
 

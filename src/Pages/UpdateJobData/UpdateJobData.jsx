@@ -74,9 +74,9 @@ const onSubmit=(data)=>{
     })
 }
 return (
-      <div className="my-12">
-      <div className="max-w-7xl mx-auto border  shadow-xl   bg-slate-200 dark:bg-gray-900">
-        <div className=" flex flex-col  border  justify-center items-center">
+      <div className="py-12 bg-slate-200 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto border border-black dark:border-white rounded-lg  shadow-xl   bg-slate-200 dark:bg-gray-900">
+        <div className=" flex flex-col   justify-center items-center">
           <div className="p-6 ">
             <div className="flex justify-center mx-auto">
               <GrWorkshop className="text-5xl text-[#11B719]"></GrWorkshop>
@@ -93,7 +93,7 @@ return (
             </div>
           </div>
         </div>
-        <div className="  p-4">
+        <div className="  p-8">
           <section className="bg-slate-200 dark:bg-gray-900">
             <div className="container flex flex-col items-center justify-center  px-6 mx-auto">
               <form

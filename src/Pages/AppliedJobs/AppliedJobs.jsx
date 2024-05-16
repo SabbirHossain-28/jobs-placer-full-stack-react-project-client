@@ -63,7 +63,7 @@ const AppliedJobs = () => {
                   <td className="border-black dark:border-white border">{listData.jobCategory}</td>
                   <td className="border-black dark:border-white border">{listData.jobPosterEmail}</td>
                   <td className="border-black dark:border-white border">{listData.userEmail}</td>
-                  <td className="border-black dark:border-white border">{listData.salaryRange}</td>
+                  <td className="border-black dark:border-white border">{listData.salaryRange}($)</td>
                   <td className="border-black dark:border-white border">{listData.jobPostingDate}</td>
                   <td className="border-black dark:border-white border">
                     {new Date(

@@ -116,7 +116,7 @@ const JobDetails = () => {
                 Employer name:{jobPosterEmail}
               </p>
               <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
-                Salary-Range:{salaryRange}
+                Salary-Range:{salaryRange}($)
               </p>
               <p className=" text-gray-500 md:mt-4 md:block dark:text-gray-400">
                 Application Deadline:

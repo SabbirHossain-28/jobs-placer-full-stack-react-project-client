@@ -110,6 +110,7 @@ const ClientsFeedBack = () => {
               </div>
             </motion.div>
           </motion.section>
+          <p className="text-xl text-gray-500 text-center mt-4">Drag the card to play!!!</p>
         </div>
       </section>
     </div>
