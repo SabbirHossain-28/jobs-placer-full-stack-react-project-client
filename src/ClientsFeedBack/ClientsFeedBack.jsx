@@ -1,9 +1,11 @@
+import { motion } from "framer-motion"
+
 const ClientsFeedBack = () => {
   return (
     <div className="pb- ">
       <section className="bg-slate-300 dark:bg-gray-800 p-12 ">
         <div className="max-w-7xl mx-auto px-6 py-10 shadow-xl border border-black dark:border-white rounded-xl">
-          <h1 className="text-5xl font-lora font-semibold text-center text-teal-700 capitalize lg:text-3xl dark:text-white">
+          <h1 className="text-2xl font-lora font-semibold text-center text-teal-700 capitalize lg:text-5xl dark:text-white">
             What our <span className="text-[#4be053]">clients</span> say
           </h1>
 
@@ -12,8 +14,25 @@ const ClientsFeedBack = () => {
             working with us.
           </p>
 
-          <section className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-2 xl:grid-cols-3">
-            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
+          <motion.section 
+          variants={{
+            hidden:{opacity:0},
+            show:{opacity:1,transition:{
+              staggerChildren:0.25,
+            }},
+          }}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-3">
+            <motion.div 
+            variants={{hidden:{opacity:0},show:{opacity:1}}} drag dragConstraints={{
+              top:-50,
+              right:50,
+              bottom:50,
+              left:-50
+            }}
+            dragTransition={{bounceStiffness:500,bounceDamping:10}}
+            className="p-8 border rounded-lg border-gray-400 dark:border-gray-500 overflow-x-hidden">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
               Working with Jobs Placer was an amazing experience. They
                 helped us find the perfect candidates for our team, saving us
@@ -32,9 +51,17 @@ const ClientsFeedBack = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
+            <motion.div variants={{hidden:{opacity:0},show:{opacity:1}}} 
+            drag dragConstraints={{
+              top:-50,
+              right:50,
+              bottom:50,
+              left:-50
+            }}
+            dragTransition={{bounceStiffness:500,bounceDamping:10}}
+            className="p-8 border rounded-lg border-gray-400 dark:border-gray-500 overflow-x-hidden">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
                 “XFactor Solution has been working with Jobs Placer for years,
                 and they never disappoint. Their dedication to finding the
@@ -53,9 +80,17 @@ const ClientsFeedBack = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-8 border rounded-lg border-gray-400 dark:border-gray-500">
+            <motion.div variants={{hidden:{opacity:0},show:{opacity:1}}} 
+            drag dragConstraints={{
+              top:-50,
+              right:50,
+              bottom:50,
+              left:-50
+            }}
+            dragTransition={{bounceStiffness:500,bounceDamping:10}}
+            className="p-8 border rounded-lg border-gray-400 dark:border-gray-500 overflow-x-hidden">
               <p className="leading-loose text-gray-500 dark:text-gray-400">
                 “We are very satisfied with the services provided by Jobs
                 Placer. They helped us build a talented and diverse team that
@@ -73,8 +108,8 @@ const ClientsFeedBack = () => {
                   </span>
                 </div>
               </div>
-            </div>
-          </section>
+            </motion.div>
+          </motion.section>
         </div>
       </section>
     </div>
